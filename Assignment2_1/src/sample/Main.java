@@ -16,7 +16,7 @@ public class Main extends Application {
         window = primaryStage;
 
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        window.setTitle("Wiki Tool");
+        window.setTitle("VARpedia");
         window.setScene(new Scene(root, 500, 500));
         window.show();
     }

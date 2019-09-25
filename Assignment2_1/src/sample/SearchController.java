@@ -19,9 +19,11 @@ import javafx.event.EventHandler;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
+	private ArrayList<String> wList;
 	@FXML
 	private TextField searchBar;
 	
@@ -46,20 +48,39 @@ public class SearchController implements Initializable {
     		
     		response.setText("Empty Search");
     	} else {
+    		
     		WikitSearchTask wikitSearchTask = new WikitSearchTask(searchBar.getText());
     		Thread thread = new Thread(wikitSearchTask);
     		thread.start();
-    		
+    		response.setText("Loading . . .");
     		wikitSearchTask.messageProperty().addListener(new ChangeListener<String>() {
     			@Override
     			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
     					
     			}
     			});
+    		wikitSearchTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+    			@Override
+    			public void handle(WorkerStateEvent event2) {
+    					
+    					wList= wikitSearchTask.getline();
+    					
+    					try {
+    						toSelect(event);
+    					} catch(IOException e) {
+    					
+    					}
+    					
+    					
+    					
+    					
+    			}
+    			
+    		});
 
     		wikitSearchTask.setOnCancelled(new EventHandler<WorkerStateEvent>() {
     			@Override
-    			public void handle(WorkerStateEvent event) {
+    			public void handle(WorkerStateEvent event2) {
     					
     					
     					response.setText("No Search Found");
@@ -69,6 +90,24 @@ public class SearchController implements Initializable {
     	}
     	
 
+    }
+    public void toSelect(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("selection.fxml"));
+    	Parent createParent= loader.load();
+        Scene createScene = new Scene(createParent, 500, 500);
+        
+        SelectionController controller = loader.getController();
+        String largeLines = "";
+        for(int i=0;i<wList.size();i++) {
+        	largeLines= largeLines + wList.get(i) + "\n";
+        }
+        controller.setLines(largeLines);
+        //This gets the stage info
+        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        createWindow.setScene(createScene);
+        createWindow.show();
     }
     
     @Override

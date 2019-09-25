@@ -38,7 +38,7 @@ public class WikitSearchTask extends Task {
             		
                     lineArray.add(line);
                     updateMessage(line);
-                    System.out.println(line);
+                    
                     }
             	
             } else {
