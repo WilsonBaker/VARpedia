@@ -22,7 +22,7 @@ public class Controller implements Initializable {
 
 
     public void buttonCreate(ActionEvent event) throws IOException {
-        Parent createParent = FXMLLoader.load(getClass().getResource("create.fxml"));
+        Parent createParent = FXMLLoader.load(getClass().getResource("search.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);
 
         //This gets the stage info
