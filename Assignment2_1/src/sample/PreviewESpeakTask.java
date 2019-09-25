@@ -17,8 +17,8 @@ public class PreviewESpeakTask extends Task {
     protected Object call() throws Exception {
     	
         try {
-        	System.out.println("hoh");
-        	String preview = "espeak "+_lines+" "  ;
+        	
+        	String preview = "espeak \""+_lines+"\" "  ;
             ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", preview);
 
             Process process = builder.start();

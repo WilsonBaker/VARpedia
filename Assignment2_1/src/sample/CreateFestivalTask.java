@@ -6,19 +6,22 @@ import java.io.InputStreamReader;
 
 import javafx.concurrent.Task;
 
-public class PreviewFestivalTask extends Task {
-/*echo "hello" | festival --tts*/
+public class CreateFestivalTask extends Task{
 	private String _lines;
-	
-	public PreviewFestivalTask(String lines) {
+	private String _name;
+	public CreateFestivalTask(String lines, String name) {
 		_lines=lines;
+		_name=name;
 	}
+	
 	@Override
     protected Object call() throws Exception {
     	
         try {
-        	String preview = "echo \""+_lines+"\" | festival --tts"  ;
-            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", preview);
+        	
+        	String create = "echo \""+_lines+"\" | text2wave -o Creations/output.wav ; lame Creations/output.wav Creations/"+_name+".mp3 ; rm -f Creations/output.wav"  ;
+        	String createmp3 = "";
+            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
 
             Process process = builder.start();
 
@@ -31,4 +34,5 @@ public class PreviewFestivalTask extends Task {
 
         return null;
 	}
+
 }

@@ -31,7 +31,7 @@ public class SearchController implements Initializable {
 	private Text response;
 	
     public void buttonMenu(ActionEvent event) throws IOException {
-        Parent createParent = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);
 
         //This gets the stage info
