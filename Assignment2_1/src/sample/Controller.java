@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,6 @@ public class Controller implements Initializable {
 
     @FXML private ListView listView;
     
-
 
     public void buttonCreate(ActionEvent event) throws IOException {
         Parent createParent = FXMLLoader.load(getClass().getResource("search.fxml"));
