@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +18,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML private ListView listView;
+    
 
 
     public void buttonCreate(ActionEvent event) throws IOException {
