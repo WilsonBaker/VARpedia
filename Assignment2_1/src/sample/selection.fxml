@@ -37,6 +37,6 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="322.0" layoutY="453.0" mnemonicParsing="false" text="Make Creation" />
+      <Button layoutX="322.0" layoutY="453.0" mnemonicParsing="false" onAction="#AudioScene" text="Make Creation" />
    </children>
 </AnchorPane>

@@ -119,6 +119,29 @@ public class SelectionController implements Initializable {
         
     }
 	
+	public void AudioScene (ActionEvent event) throws IOException {
+		File temp = new File("Audio");
+		if(temp.listFiles().length == 0) {
+			alert.setContentText("No Audio Chunks for creation");
+			alert.setTitle("No Audio Chunks for creation");
+			alert.setHeaderText("No Audio Chunks for creation");
+			alert.show();
+		}else {
+			FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(getClass().getResource("ChooseAudio.fxml"));
+	    	Parent createParent= loader.load();
+	        Scene createScene = new Scene(createParent, 500, 500);
+	        
+	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+	        createWindow.setScene(createScene);
+	        createWindow.show();
+			
+		}
+		
+		
+	}
+	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
 		lines.setWrapText(true);
@@ -128,5 +151,7 @@ public class SelectionController implements Initializable {
 		voice.getSelectionModel().selectFirst();
 		
     }
+	
+
 
 }
