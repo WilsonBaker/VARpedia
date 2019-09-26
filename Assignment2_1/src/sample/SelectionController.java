@@ -36,10 +36,12 @@ public class SelectionController implements Initializable {
 	private String _wLines;
 	private Alert alert = new Alert(AlertType.INFORMATION);
 	private String[] words;
+	private String _wikitSearch;
 	
-	public void setLines(String largeLines){
+	public void setLines(String largeLines, String wikitSearch){
 		_wLines=largeLines;
 		lines.setText(largeLines);
+		_wikitSearch=wikitSearch;
 		
 	}
 	
@@ -130,6 +132,8 @@ public class SelectionController implements Initializable {
 			FXMLLoader loader = new FXMLLoader();
 	    	loader.setLocation(getClass().getResource("ChooseAudio.fxml"));
 	    	Parent createParent= loader.load();
+	    	ChooseAudioController controller = loader.getController();
+	    	controller.setWikitName( _wikitSearch);
 	        Scene createScene = new Scene(createParent, 500, 500);
 	        
 	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();

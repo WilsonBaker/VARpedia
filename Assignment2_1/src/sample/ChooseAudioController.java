@@ -15,12 +15,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 
 public class ChooseAudioController implements Initializable {
-	
+	 private String _wikitSearch;
+	 
 	 @FXML private ListView listAvailable;
 	 @FXML private ListView listCreation;
 	 
 	 @FXML private ChoiceBox picturesNo;
-	 
+	 public void setWikitName(String name) {
+		 _wikitSearch=name;
+		 
+	 }
 	 
 	 public String[]  getCreations() {
 

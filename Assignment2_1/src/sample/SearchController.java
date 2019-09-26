@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SearchController implements Initializable {
+	private String _wikitSearch;
 	private ArrayList<String> wList;
 	@FXML
 	private TextField searchBar;
@@ -48,7 +49,7 @@ public class SearchController implements Initializable {
     		
     		response.setText("Empty Search");
     	} else {
-    		
+    		_wikitSearch=searchBar.getText();
     		WikitSearchTask wikitSearchTask = new WikitSearchTask(searchBar.getText());
     		Thread thread = new Thread(wikitSearchTask);
     		thread.start();
@@ -102,7 +103,9 @@ public class SearchController implements Initializable {
         for(int i=0;i<wList.size();i++) {
         	largeLines= largeLines + wList.get(i) + "\n";
         }
-        controller.setLines(largeLines);
+        controller.setLines(largeLines, _wikitSearch);
+        
+        
         //This gets the stage info
         Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
 
