@@ -1,11 +1,14 @@
 package sample;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -48,20 +51,22 @@ public class SelectionController implements Initializable {
 			alert.setHeaderText("Too Many Words");
 			alert.show();
 			
-		}else if(voice.getValue().equals("festival")) {
-			PreviewFestivalTask festivalTask = new PreviewFestivalTask(selected_lines.getText());
-    		Thread thread = new Thread(festivalTask);
+		}else {
+			PreviewTask preview = new PreviewTask(selected_lines.getText(),voice.getValue());
+    		Thread thread = new Thread(preview);
     		thread.start();
-		}else if (voice.getValue().equals("espeak")) {
-			PreviewESpeakTask espeaktask = new PreviewESpeakTask(selected_lines.getText());
-    		Thread thread = new Thread(espeaktask);
-    		thread.start();
+    		
+    		
+    					
+    					
 		}
 		
 	}
 	
 	public void create(ActionEvent event) throws IOException {
 		words= selected_lines.getText().split("\\s+");
+		File temp = new File("Audio/"+creation_name.getText()+".mp3");
+		
 		if(words.length>30) {
 			alert.setContentText("Text has more than 30 words");
 			alert.setTitle("Too Many Words");
@@ -73,22 +78,36 @@ public class SelectionController implements Initializable {
 			alert.setTitle("Empty Fields Required");
 			alert.setHeaderText("Empty Fields Required");
 			alert.show();
-		}else if(voice.getValue().equals("espeak")) {
-			CreateESpeakTask espeaktask = new CreateESpeakTask(selected_lines.getText(),creation_name.getText());
-    		Thread thread = new Thread(espeaktask);
-    		thread.start();
-    		/*You need to add the change in scene over here to the movie creator*/
-			
-		}else if(voice.getValue().equals("festival")) {
-			CreateFestivalTask festivaltask = new CreateFestivalTask(selected_lines.getText(),creation_name.getText());
-    		Thread thread = new Thread(festivaltask);
+		} else if(temp.exists()){
+			alert.setContentText("Chunk " + creation_name+ " exists");
+			alert.setTitle("Chunk Exists");
+			alert.setHeaderText("Chunk Exists");
+			alert.show();
+		}else {
+			CreateChunkTask createtask = new CreateChunkTask(selected_lines.getText(),creation_name.getText(),voice.getValue());
+    		Thread thread = new Thread(createtask);
     		thread.start();
     		
-    		/*You need to add the change in scene over here as well to the movie creator*/
+    		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+    			@Override
+    			public void handle(WorkerStateEvent event2) {
+    				alert.setContentText("Chunk" + creation_name.getText() + " Created");
+    				alert.setTitle("Chunk Created");
+    				alert.setHeaderText("Chunk Created");
+    				alert.show();
+    			}
+    		});
+    		/*You need to add the change in scene over here to the movie creator*/
 		}
+		
 	}
 	
 	public void buttonMenu(ActionEvent event) throws IOException {
+		File temp = new File("Audio");
+		for(File file: temp.listFiles()) {
+			file.delete();
+		}
+		
         Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);
 
@@ -97,7 +116,7 @@ public class SelectionController implements Initializable {
 
         createWindow.setScene(createScene);
         createWindow.show();
-
+        
     }
 	
 	@Override

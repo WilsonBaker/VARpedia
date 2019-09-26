@@ -28,14 +28,15 @@
       </Text>
       <Button layoutX="365.0" layoutY="362.0" mnemonicParsing="false" onAction="#preview" text="Preview" />
       <Button layoutX="369.0" layoutY="415.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="172.0" layoutY="460.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return to Main Menu" />
+      <Button layoutX="90.0" layoutY="453.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return to Main Menu" />
       <TextArea fx:id="lines" layoutX="67.0" layoutY="77.0" prefHeight="104.0" prefWidth="365.0" />
       <TextArea fx:id="selected_lines" layoutX="67.0" layoutY="239.0" prefHeight="104.0" prefWidth="365.0" />
       <TextField fx:id="creation_name" layoutX="204.0" layoutY="415.0" prefHeight="26.0" prefWidth="150.0" />
-      <Text layoutX="90.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Name:">
+      <Text layoutX="90.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chunk Name:">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
+      <Button layoutX="322.0" layoutY="453.0" mnemonicParsing="false" text="Make Creation" />
    </children>
 </AnchorPane>
