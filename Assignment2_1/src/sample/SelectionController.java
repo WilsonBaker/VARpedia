@@ -81,7 +81,7 @@ public class SelectionController implements Initializable {
 			alert.setHeaderText("Empty Fields Required");
 			alert.show();
 		} else if(temp.exists()){
-			alert.setContentText("Chunk " + creation_name+ " exists");
+			alert.setContentText("Chunk " + creation_name.getText()+ " exists");
 			alert.setTitle("Chunk Exists");
 			alert.setHeaderText("Chunk Exists");
 			alert.show();
@@ -93,7 +93,7 @@ public class SelectionController implements Initializable {
     		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
     			@Override
     			public void handle(WorkerStateEvent event2) {
-    				alert.setContentText("Chunk" + creation_name.getText() + " Created");
+    				alert.setContentText("Chunk " + creation_name.getText() + " Created");
     				alert.setTitle("Chunk Created");
     				alert.setHeaderText("Chunk Created");
     				alert.show();
