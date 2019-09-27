@@ -66,6 +66,10 @@ public class SelectionController implements Initializable {
 	}
 	
 	public void create(ActionEvent event) throws IOException {
+		File temp2 = new File("Audio");
+		for(File file: temp2.listFiles()) {
+			file.delete();
+		}
 		words= selected_lines.getText().split("\\s+");
 		File temp = new File("Audio/"+creation_name.getText()+".mp3");
 		

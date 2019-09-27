@@ -1,10 +1,17 @@
 package sample;
 
 import java.io.BufferedReader;
+import java.io.File;
+
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.collections.ObservableList;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,11 +20,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class ChooseAudioController implements Initializable {
 	 private String _wikitSearch;
@@ -25,6 +35,7 @@ public class ChooseAudioController implements Initializable {
 	 @FXML private ListView listAvailable;
 	 @FXML private ListView listCreation;
 	 @FXML private TextField creationName;
+	 @FXML private Text text;
 	 
 	 @FXML private ChoiceBox picturesNo;
 	 public void setWikitName(String name) {
@@ -87,21 +98,56 @@ public class ChooseAudioController implements Initializable {
 		 
 	 }
 	 public void flickr(ActionEvent event) throws IOException {
+		File temp = new File("Creations/"+creationName.getText()+".mp4");
 		if(creationName.getText().equals("")) {
 			alert.setContentText("Creation name empty");
 			alert.setTitle("Empty Fields Required");
 			alert.setHeaderText("Empty Fields Required");
 			alert.show();
+		}else if(temp.exists()){
+			alert.setContentText("Creation " + creationName.getText()+ " exists");
+			alert.setTitle("Creation Exists");
+			alert.setHeaderText("Creation Exists");
+			alert.show();
+			
 		}else {
 			/*run another task to combine audio files here*/
 			/* combined mp3 needs to be in the creations folder*/
+			text.setText("Creating...");
 			CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
 	 		Thread thread = new Thread(createtask);
 	 		thread.start();
+	 		
+	 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+    			@Override
+    			public void handle(WorkerStateEvent event2) {
+    				text.setText("");
+    				alert.setContentText("Creation" + creationName.getText() + " Created");
+    				alert.setTitle("Creation Created");
+    				alert.setHeaderText("Creation Created");
+    				alert.show();
+    				/* Over here you need to play the video*/
+    			}
+    		});
 		}
 		
 	 }
-	 
+	 public void buttonMenu(ActionEvent event) throws IOException {
+			File temp = new File("Audio");
+			for(File file: temp.listFiles()) {
+				file.delete();
+			}
+			
+	        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+	        Scene createScene = new Scene(createParent, 500, 500);
+
+	        //This gets the stage info
+	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+	        createWindow.setScene(createScene);
+	        createWindow.show();
+	        
+	    }
 	 @Override
 	    public void initialize(URL location, ResourceBundle resources) {
 	        String[] strings = getCreations();

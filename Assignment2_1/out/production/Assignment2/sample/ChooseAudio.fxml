@@ -58,5 +58,11 @@
       <Text layoutX="182.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation Name:" />
       <TextField fx:id="creationName" layoutX="182.0" layoutY="433.0" />
       <Button layoutX="386.0" layoutY="433.0" mnemonicParsing="false" onAction="#flickr" text="Create" />
+      <Text fx:id="text" layoutX="357.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="120.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="179.0" layoutY="471.0" mnemonicParsing="false" onAction="#buttonMenu" text="Back to Main Menu" />
    </children>
 </AnchorPane>
