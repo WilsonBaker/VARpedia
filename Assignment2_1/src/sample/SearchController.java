@@ -17,6 +17,7 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,6 +45,10 @@ public class SearchController implements Initializable {
     }
     
     public void buttonSearch(ActionEvent event) throws IOException {
+    	File temp = new File("Audio");
+		for(File file: temp.listFiles()) {
+			file.delete();
+		}
     	response.setText("");
     	if (searchBar.getText().equals("")) {
     		
