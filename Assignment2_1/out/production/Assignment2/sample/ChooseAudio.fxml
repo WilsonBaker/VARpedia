@@ -56,7 +56,7 @@
          </children>
       </VBox>
       <Text layoutX="182.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation Name:" />
-      <TextField layoutX="182.0" layoutY="433.0" />
-      <Button layoutX="386.0" layoutY="433.0" mnemonicParsing="false" text="Create" />
+      <TextField fx:id="creationName" layoutX="182.0" layoutY="433.0" />
+      <Button layoutX="386.0" layoutY="433.0" mnemonicParsing="false" onAction="#flickr" text="Create" />
    </children>
 </AnchorPane>

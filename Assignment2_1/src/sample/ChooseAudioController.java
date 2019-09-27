@@ -1,7 +1,11 @@
 package sample;
 
 import java.io.BufferedReader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -13,12 +17,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 
 public class ChooseAudioController implements Initializable {
 	 private String _wikitSearch;
-	 
+	 private Alert alert = new Alert(AlertType.INFORMATION);
 	 @FXML private ListView listAvailable;
 	 @FXML private ListView listCreation;
+	 @FXML private TextField creationName;
 	 
 	 @FXML private ChoiceBox picturesNo;
 	 public void setWikitName(String name) {
@@ -80,6 +86,21 @@ public class ChooseAudioController implements Initializable {
 		 }
 		 
 	 }
+	 public void flickr(ActionEvent event) throws IOException {
+		if(creationName.getText().equals("")) {
+			alert.setContentText("Creation name empty");
+			alert.setTitle("Empty Fields Required");
+			alert.setHeaderText("Empty Fields Required");
+			alert.show();
+		}else {
+			/*run another task to combine audio files here*/
+			/* combined mp3 needs to be in the creations folder*/
+			CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
+	 		Thread thread = new Thread(createtask);
+	 		thread.start();
+		}
+		
+	 }
 	 
 	 @Override
 	    public void initialize(URL location, ResourceBundle resources) {
@@ -87,8 +108,10 @@ public class ChooseAudioController implements Initializable {
 	        listAvailable.getItems().addAll(strings);
 	        listAvailable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	        
-	        String[] pictures = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+	        String[] pictures = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	        picturesNo.getItems().addAll(pictures);
+	        picturesNo.getSelectionModel().selectFirst();
+	        
 	    }
 
 }
