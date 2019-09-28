@@ -33,35 +33,29 @@ public class MenuController implements Initializable {
 
     }
 
-    public void buttonPlay(ActionEvent event) {
-        String playString = listView.getSelectionModel().getSelectedItem().toString();
+    public void buttonPlay(ActionEvent event) throws IOException{
+    	String playString = listView.getSelectionModel().getSelectedItem().toString();
 
-        playString = "./" + playString + ".mp4";
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("something.fxml"));
+        Parent createParent = loader.load();
+        Scene createScene = new Scene(createParent, 500, 500);
+        
+        MediaPlayerController controller = loader.getController();
+        controller.initData(playString);
 
-        try {
-            String cmd = "ffplay -autoexit " + playString;
+        //This gets the stage info
+        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
-
-            Process process = pb.start();
-
-            int exitVal = process.waitFor();
-            if (exitVal == 0) {
-                System.out.println("Success!");
-            } else {
-                System.out.println("Nay!");
-            }
-
-        }catch (Exception e) {
-
-        }
+        createWindow.setScene(createScene);
+        createWindow.show();
 
     }
 
     public String[]  getCreations() {
 
         try {
-            String cmd = "ls -1 | egrep '\\.mp4$' | sed -e 's/\\..*$//'";
+            String cmd = "ls -1 ./Creations | egrep '\\.mp4$' | sed -e 's/\\..*$//'";
 
             ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
