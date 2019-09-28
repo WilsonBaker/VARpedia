@@ -46,10 +46,9 @@ public class SearchController implements Initializable {
         createWindow.show();
 
     }
-    
-    public void buttonSearch(ActionEvent event) throws IOException {
+    public void runCommand(String com) {
     	try {
-            String com = "rm Audio/*.mp3";
+            
             ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
             Process process = builder.start();
@@ -65,6 +64,11 @@ public class SearchController implements Initializable {
 	 }catch(Exception ex) {
             ex.printStackTrace();
         }
+    }
+    public void buttonSearch(ActionEvent event) throws IOException {
+    	runCommand("rm Audio/*.txt");
+    	runCommand("rm Audio/*.mp3");
+    	runCommand("rm Audio/*.wav");
     	response.setText("");
     	if (searchBar.getText().equals("")) {
     		
