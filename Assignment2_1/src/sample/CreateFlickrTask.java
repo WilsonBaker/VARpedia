@@ -166,6 +166,7 @@ public class CreateFlickrTask extends Task{
             runCommand("rm Creations/*.wav");
             runCommand("rm Creations/*.mp3");
             runCommand("rm Audio/*.mp3");
+            runCommand("rm Audio/mylist.txt");
             
             
 		} catch (Exception e) {

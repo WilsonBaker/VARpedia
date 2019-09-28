@@ -17,8 +17,11 @@ import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -45,10 +48,23 @@ public class SearchController implements Initializable {
     }
     
     public void buttonSearch(ActionEvent event) throws IOException {
-    	File temp = new File("Audio");
-		for(File file: temp.listFiles()) {
-			file.delete();
-		}
+    	try {
+            String com = "rm Audio/*.mp3";
+            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+
+            Process process = builder.start();
+
+            InputStream out = process.getInputStream();
+            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+            int exitStatus = process.waitFor();
+            
+            if(exitStatus ==0) {
+            	
+            }
+            
+	 }catch(Exception ex) {
+            ex.printStackTrace();
+        }
     	response.setText("");
     	if (searchBar.getText().equals("")) {
     		

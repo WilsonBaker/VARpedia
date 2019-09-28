@@ -137,8 +137,9 @@ public class ChooseAudioController implements Initializable {
 			CombineAudioTask combineTask = new CombineAudioTask(listCreation.getItems());
 			Thread combineThread = new Thread(combineTask);
 			combineThread.start();
-			combineTask.setOnSucceeded(null);
+			
 			combineTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+				
     			@Override
     			public void handle(WorkerStateEvent event2) {
 					text.setText("Creating...");
@@ -149,7 +150,7 @@ public class ChooseAudioController implements Initializable {
 	 		
 			 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 		    			@Override
-		    			public void handle(WorkerStateEvent event2) {
+		    			public void handle(WorkerStateEvent event3) {
 		    				text.setText("");
 		    				alert.setContentText("Creation" + creationName.getText() + " Created");
 		    				alert.setTitle("Creation Created");
