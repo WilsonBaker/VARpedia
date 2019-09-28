@@ -19,6 +19,7 @@ import com.flickr4java.flickr.photos.PhotosInterface;
 import com.flickr4java.flickr.photos.SearchParameters;
 import com.flickr4java.flickr.photos.Size;
 
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
 public class CreateFlickrTask extends Task{
@@ -27,10 +28,13 @@ public class CreateFlickrTask extends Task{
 	private String _wikitSearch ;
 	private String _name;
 	private int _number;
+	private ObservableList audioList;
+	
 	private Float _duration = 0.0f;
-	public CreateFlickrTask(String search, String name , String number) {
+	public CreateFlickrTask(String search, String name , String number,ObservableList list) {
 		_wikitSearch=search;
 		_name=name;
+		audioList = list;
 		try {
 			_number=Integer.parseInt(number);
 			
@@ -82,7 +86,15 @@ public class CreateFlickrTask extends Task{
 	}
 	@Override
     protected Object call() throws Exception {
+		String cmd;
+		String path = System.getProperty("user.dir");
+		for (Object item: this.audioList) {
+			cmd = "echo \"file '" + path + "/Audio/" + item.toString() + ".mp3'\" >> ./Audio/mylist.txt";
+			runCommand(cmd);
+		}
 		
+		cmd = "ffmpeg -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Creations/output.mp3";
+		runCommand(cmd);
 		runCommand("ffmpeg -y -i Creations/output.mp3 Creations/output.wav");
 		
 		try {
@@ -94,7 +106,7 @@ public class CreateFlickrTask extends Task{
 			String query = _wikitSearch;
 			int resultsPerPage = _number;
 			int page = 0;
-			String path = System.getProperty("user.dir");
+			
 			
 	        PhotosInterface photos = flickr.getPhotosInterface();
 	        SearchParameters params = new SearchParameters();

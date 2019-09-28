@@ -133,17 +133,13 @@ public class ChooseAudioController implements Initializable {
 		}else {
 			/*run another task to combine audio files here*/
 			/* combined mp3 needs to be in the creations folder*/
-			text.setText("Combining Audio...");
-			CombineAudioTask combineTask = new CombineAudioTask(listCreation.getItems());
-			Thread combineThread = new Thread(combineTask);
-			combineThread.start();
 			
-			combineTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			
 				
-    			@Override
-    			public void handle(WorkerStateEvent event2) {
+    			
+    			
 					text.setText("Creating...");
-					CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
+					CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem(),listCreation.getItems());
 			 		Thread thread = new Thread(createtask);
 			 		thread.start();
 	 		
@@ -166,8 +162,8 @@ public class ChooseAudioController implements Initializable {
 		    				/* Over here you need to play the video*/
 		    			}
     		});
-    			}
-			});
+    			
+			
 	 		
 	 		
 		}
