@@ -160,7 +160,7 @@ public class CreateFlickrTask extends Task{
             runCommand("echo \"file '"+_rimages.get(_rimages.size()-1)+"'\" >> hi.txt");
             
             
-            runCommand("ffmpeg  -f concat -safe 0 -i hi.txt  -i ./Creations/output.mp3  -filter:v \"format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='awesome\"  -c:v libx264 -c:a aac  ./Creations/"+_name+".mp4");
+            runCommand("ffmpeg  -f concat -safe 0 -i hi.txt  -i ./Creations/output.mp3  -filter:v \"format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='awesome\"  -c:v libx264 -c:a aac -shortest  ./Creations/"+_name+".mp4");
             runCommand("rm -f hi.txt");
             runCommand("rm Creations/*.jpg");
             runCommand("rm Creations/*.wav");
