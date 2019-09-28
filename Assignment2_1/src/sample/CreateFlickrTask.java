@@ -27,7 +27,7 @@ public class CreateFlickrTask extends Task{
 	private String _wikitSearch ;
 	private String _name;
 	private int _number;
-	private float _duration;
+	private Float _duration = 0.0f;
 	public CreateFlickrTask(String search, String name , String number) {
 		_wikitSearch=search;
 		_name=name;
@@ -128,15 +128,20 @@ public class CreateFlickrTask extends Task{
 	        InputStream out = process.getInputStream();
 	        BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
 	        String length = stdout.readLine();
-	        
-	        try {
-	        	_duration = Float.parseFloat(length);
-	        	
-	        }catch(NumberFormatException e){
-	        	
-	 
-	        }
+	        int exitStatus = process.waitFor();
+            
+            if(exitStatus ==0) {
+            	 try {
+     	        	_duration = Float.parseFloat(length);
+     	        	
+     	        }catch(NumberFormatException e){
+     	        	
+     	 
+     	        }
+            }
+	       
 	        _duration = _duration/(_images.size());
+	        
 	        for (String i : _images) {
 	        	String rimage = i.replace(".","new." );
 	        	_rimages.add(rimage);
@@ -161,6 +166,7 @@ public class CreateFlickrTask extends Task{
             runCommand("rm Creations/*.wav");
             runCommand("rm Creations/*.mp3");
             runCommand("rm Audio/*.mp3");
+            
             
 		} catch (Exception e) {
 			

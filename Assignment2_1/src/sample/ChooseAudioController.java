@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
@@ -111,6 +112,23 @@ public class ChooseAudioController implements Initializable {
 			alert.setTitle("Creation Exists");
 			alert.setHeaderText("Creation Exists");
 			alert.show();
+			try {
+	            String del = "rm Audio/*.mp3";
+	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", del);
+
+	            Process process = builder.start();
+
+	            InputStream out = process.getInputStream();
+	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+	            int exitStatus = process.waitFor();
+	            
+	            if(exitStatus ==0) {
+	            	
+	            }
+	            
+			}catch(Exception ex) {
+	            ex.printStackTrace();
+	        }
 			
 		}else {
 			/*run another task to combine audio files here*/
@@ -120,26 +138,53 @@ public class ChooseAudioController implements Initializable {
 			Thread combineThread = new Thread(combineTask);
 			combineThread.start();
 			combineTask.setOnSucceeded(null);
-			
-			text.setText("Creating...");
-			CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
-	 		Thread thread = new Thread(createtask);
-	 		thread.start();
-	 		
-	 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			combineTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
     			@Override
     			public void handle(WorkerStateEvent event2) {
-    				text.setText("");
-    				alert.setContentText("Creation" + creationName.getText() + " Created");
-    				alert.setTitle("Creation Created");
-    				alert.setHeaderText("Creation Created");
-    				alert.show();
-    				/* Over here you need to play the video*/
-    			}
+					text.setText("Creating...");
+					CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
+			 		Thread thread = new Thread(createtask);
+			 		thread.start();
+	 		
+	 		
+			 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+		    			@Override
+		    			public void handle(WorkerStateEvent event2) {
+		    				text.setText("");
+		    				alert.setContentText("Creation" + creationName.getText() + " Created");
+		    				alert.setTitle("Creation Created");
+		    				alert.setHeaderText("Creation Created");
+		    				alert.show();
+		    				
+		    				try {
+	    						toMenu(event);
+	    					} catch(IOException e) {
+	    					
+	    					}
+		    				/* Over here you need to play the video*/
+		    			}
     		});
+    			}
+			});
+	 		
+	 		
 		}
 		
 	 }
+	 
+	 public void toMenu(ActionEvent event) throws IOException {
+			
+			
+	        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+	        Scene createScene = new Scene(createParent, 500, 500);
+
+	        //This gets the stage info
+	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+	        createWindow.setScene(createScene);
+	        createWindow.show();
+	        
+	    }
 	 public void buttonMenu(ActionEvent event) throws IOException {
 			File temp = new File("Audio");
 			for(File file: temp.listFiles()) {
