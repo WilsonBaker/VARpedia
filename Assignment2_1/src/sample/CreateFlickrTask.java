@@ -173,7 +173,7 @@ public class CreateFlickrTask extends Task{
             runCommand("echo \"file '"+_rimages.get(_rimages.size()-1)+"'\" >> hi.txt");
             
             
-            runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_name+"\"  -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Creations/"+_name+".mp4 ; ffmpeg -y -i ./Creations/"+_name+".mp4 -t "+_duration+" ./Creations/"+_name+".mp4 ");
+            runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_wikitSearch+"\"  -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Creations/"+_name+".mp4 ; ffmpeg -y -i ./Creations/"+_name+".mp4 -t "+_duration+" ./Creations/"+_name+".mp4 ");
             runCommand("rm -f hi.txt");
             runCommand("rm Creations/*.jpg");
             runCommand("rm Creations/*.wav");
