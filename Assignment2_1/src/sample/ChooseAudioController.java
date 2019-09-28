@@ -151,17 +151,18 @@ public class ChooseAudioController implements Initializable {
 			 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 		    			@Override
 		    			public void handle(WorkerStateEvent event3) {
-		    				text.setText("");
-		    				alert.setContentText("Creation" + creationName.getText() + " Created");
-		    				alert.setTitle("Creation Created");
-		    				alert.setHeaderText("Creation Created");
-		    				alert.show();
+		    				
 		    				
 		    				try {
 	    						toMenu(event);
 	    					} catch(IOException e) {
 	    					
 	    					}
+		    				text.setText("");
+		    				alert.setContentText("Creation" + creationName.getText() + " Created");
+		    				alert.setTitle("Creation Created");
+		    				alert.setHeaderText("Creation Created");
+		    				alert.show();
 		    				/* Over here you need to play the video*/
 		    			}
     		});
