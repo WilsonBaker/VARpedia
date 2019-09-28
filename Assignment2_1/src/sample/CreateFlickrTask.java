@@ -89,13 +89,14 @@ public class CreateFlickrTask extends Task{
 		String cmd;
 		String path = System.getProperty("user.dir");
 		for (Object item: this.audioList) {
-			cmd = "echo \"file '" + path + "/Audio/" + item.toString() + ".mp3'\" >> ./Audio/mylist.txt";
+			cmd = "echo \"file '" + path + "/Audio/" + item.toString() + ".wav'\" >> ./Audio/mylist.txt";
 			runCommand(cmd);
 		}
 		
-		cmd = "ffmpeg -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Creations/output.mp3";
+		cmd = "ffmpeg -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Creations/output.wav";
 		runCommand(cmd);
-		runCommand("ffmpeg -y -i Creations/output.mp3 Creations/output.wav");
+		
+		
 		
 		try {
 			String apiKey = getAPIKey("apiKey");
@@ -172,7 +173,7 @@ public class CreateFlickrTask extends Task{
             runCommand("echo \"file '"+_rimages.get(_rimages.size()-1)+"'\" >> hi.txt");
             
             
-            runCommand("ffmpeg  -f concat -safe 0 -i hi.txt  -i ./Creations/output.mp3  -filter:v \"format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='awesome\"  -c:v libx264 -c:a aac -shortest  ./Creations/"+_name+".mp4");
+            runCommand("ffmpeg  -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"format=yuv420p,drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_name+"\"  -c:v libx264 -c:a aac -shortest  ./Creations/"+_name+".mp4");
             runCommand("rm -f hi.txt");
             runCommand("rm Creations/*.jpg");
             runCommand("rm Creations/*.wav");

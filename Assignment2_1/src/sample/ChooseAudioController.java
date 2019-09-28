@@ -48,7 +48,7 @@ public class ChooseAudioController implements Initializable {
 		 String path = System.getProperty("user.dir");
 
 	        try {
-	            String cmd = "ls -1 " + path + "/Audio | egrep '\\.mp3$' | sed -e 's/\\..*$//'";
+	            String cmd = "ls -1 " + path + "/Audio | egrep '\\.wav$' | sed -e 's/\\..*$//'";
 
 	            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
@@ -113,7 +113,7 @@ public class ChooseAudioController implements Initializable {
 			alert.setHeaderText("Creation Exists");
 			alert.show();
 			try {
-	            String del = "rm Audio/*.mp3";
+	            String del = "rm Audio/*.wav";
 	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", del);
 
 	            Process process = builder.start();

@@ -68,7 +68,7 @@ public class SelectionController implements Initializable {
 	public void create(ActionEvent event) throws IOException {
 		
 		words= selected_lines.getText().split("\\s+");
-		File temp = new File("Audio/"+creation_name.getText()+".mp3");
+		File temp = new File("Audio/"+creation_name.getText()+".wav");
 		
 		if(words.length>30) {
 			alert.setContentText("Text has more than 30 words");

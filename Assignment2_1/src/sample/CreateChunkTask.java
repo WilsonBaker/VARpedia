@@ -21,7 +21,7 @@ public class CreateChunkTask extends Task{
     	if(_voice.equals("espeak")) {
     		try {
             	
-            	String create = "espeak \""+_lines+"\" -w Audio/output.wav ; lame Audio/output.wav Audio/"+_name+".mp3 ; rm -f Audio/output.wav"  ;
+            	String create = "espeak \""+_lines+"\" -w Audio/"+_name+".wav "  ;
                 ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
 
                 Process process = builder.start();
@@ -36,7 +36,7 @@ public class CreateChunkTask extends Task{
     	} else if (_voice.equals("festival")) {
     		 try {
     	        	
-    	        	String create = "echo \""+_lines+"\" | text2wave -o Audio/output.wav ; lame Audio/output.wav Audio/"+_name+".mp3 ; rm -f Audio/output.wav"  ;
+    	        	String create = "echo \""+_lines+"\" | text2wave -o Audio/"+_name+".wav "  ;
     	        	
     	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
 
