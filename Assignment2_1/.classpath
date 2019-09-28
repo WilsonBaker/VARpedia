@@ -8,7 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFX13"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX13"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/Flickr"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Flickr"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Flickr1"/>
 	<classpathentry kind="output" path="out/production/Assignment2"/>
 </classpath>

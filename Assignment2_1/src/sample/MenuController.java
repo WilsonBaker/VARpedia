@@ -43,7 +43,7 @@ public class MenuController implements Initializable {
     			 listView.getItems().remove(i);
     			 try {
     		            String cmd = "rm -f " + URL;
-    		            System.out.println(cmd);
+    		            
     		            
     		            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
