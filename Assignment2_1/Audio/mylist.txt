@@ -1,0 +1,3 @@
+file '/home/student/git/Assignment_3/Assignment2_1/Audio/cow1.mp3'
+file '/home/student/git/Assignment_3/Assignment2_1/Audio/cow2.mp3'
+file '/home/student/git/Assignment_3/Assignment2_1/Audio/cow3.mp3'

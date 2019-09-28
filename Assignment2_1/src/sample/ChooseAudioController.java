@@ -44,9 +44,10 @@ public class ChooseAudioController implements Initializable {
 	 }
 	 
 	 public String[]  getCreations() {
+		 String path = System.getProperty("user.dir");
 
 	        try {
-	            String cmd = "ls -1 ~/test | egrep '\\.mp3$' | sed -e 's/\\..*$//'";
+	            String cmd = "ls -1 " + path + "/Audio | egrep '\\.mp3$' | sed -e 's/\\..*$//'";
 
 	            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
@@ -72,7 +73,8 @@ public class ChooseAudioController implements Initializable {
 	                //abnormal..
 	            }
 
-	        } catch (IOException | InterruptedException e) {
+	        } catch (Exception e) {
+	        	e.printStackTrace();
 	            return null;
 	        }
 	        return null;
@@ -113,6 +115,12 @@ public class ChooseAudioController implements Initializable {
 		}else {
 			/*run another task to combine audio files here*/
 			/* combined mp3 needs to be in the creations folder*/
+			text.setText("Combining Audio...");
+			CombineAudioTask combineTask = new CombineAudioTask(listCreation.getItems());
+			Thread combineThread = new Thread(combineTask);
+			combineThread.start();
+			combineTask.setOnSucceeded(null);
+			
 			text.setText("Creating...");
 			CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
 	 		Thread thread = new Thread(createtask);
