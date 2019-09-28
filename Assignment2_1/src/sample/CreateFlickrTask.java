@@ -152,8 +152,8 @@ public class CreateFlickrTask extends Task{
      	 
      	        }
             }
-	       
-	        _duration = _duration/(_images.size());
+	        
+	        _duration = _duration/(_images.size()+1);
 	        
 	        for (String i : _images) {
 	        	String rimage = i.replace(".","new." );
