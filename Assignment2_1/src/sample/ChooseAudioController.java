@@ -67,7 +67,7 @@ public class ChooseAudioController implements Initializable {
 
 	            int exitVal = process.waitFor();
 	            if (exitVal == 0) {
-	                System.out.println("Success!");
+	                
 	                String[] strings = viewList.toArray(new String[viewList.size()]);
 	                return strings;
 	            } else {
@@ -102,7 +102,13 @@ public class ChooseAudioController implements Initializable {
 	 }
 	 public void flickr(ActionEvent event) throws IOException {
 		File temp = new File("Creations/"+creationName.getText()+".mp4");
-		if(creationName.getText().equals("")) {
+		if(listCreation.getItems().size()==0) {
+			alert.setContentText("No Chunks Selected");
+			alert.setTitle("No Chunks Selected");
+			alert.setHeaderText("No Chunks Selected");
+			alert.show();
+			
+		}else if(creationName.getText().equals("")) {
 			alert.setContentText("Creation name empty");
 			alert.setTitle("Empty Fields Required");
 			alert.setHeaderText("Empty Fields Required");
@@ -150,15 +156,26 @@ public class ChooseAudioController implements Initializable {
 		    				
 		    				
 		    				try {
-	    						toMenu(event);
-	    					} catch(IOException e) {
-	    					
-	    					}
-		    				text.setText("");
-		    				alert.setContentText("Creation" + creationName.getText() + " Created");
-		    				alert.setTitle("Creation Created");
-		    				alert.setHeaderText("Creation Created");
-		    				alert.show();
+		    					text.setText("");
+			    				String playString = creationName.getText();
+			    				
+			    		        FXMLLoader loader = new FXMLLoader();
+			    		        loader.setLocation(getClass().getResource("something.fxml"));
+			    		        Parent createParent = loader.load();
+			    		        Scene createScene = new Scene(createParent, 500, 500);
+			    		        
+			    		        MediaPlayerController controller = loader.getController();
+			    		        controller.initData(playString);
+			    		
+			    		        //This gets the stage info
+			    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+			    		
+			    		        createWindow.setScene(createScene);
+			    		        createWindow.show();
+		    				}catch(IOException e) {
+		    					
+		    				}
+		    				
 		    				/* Over here you need to play the video*/
 		    			}
     		});

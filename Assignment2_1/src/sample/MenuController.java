@@ -32,23 +32,54 @@ public class MenuController implements Initializable {
         createWindow.show();
 
     }
+    
+    
+    public void buttonDelete(ActionEvent event) throws IOException{
+    	int i = listView.getSelectionModel().getSelectedIndex();
+    	if (listView.getSelectionModel().getSelectedItem() != null) {
+    		String playString = listView.getSelectionModel().getSelectedItem().toString();
+        	String URL = "./Creations/" + playString + ".mp4";
+    		 if (i != -1) {
+    			 listView.getItems().remove(i);
+    			 try {
+    		            String cmd = "rm -f " + URL;
+    		            System.out.println(cmd);
+    		            
+    		            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
+    		            Process process = pb.start();
+
+
+    		            ArrayList<String> viewList = new ArrayList<String>();
+
+    		            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+    			 
+    			 }catch (IOException e) {
+    	            
+    			 }
+    		 }
+    	}
+    	
+    }
     public void buttonPlay(ActionEvent event) throws IOException{
-    	String playString = listView.getSelectionModel().getSelectedItem().toString();
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("something.fxml"));
-        Parent createParent = loader.load();
-        Scene createScene = new Scene(createParent, 500, 500);
-        
-        MediaPlayerController controller = loader.getController();
-        controller.initData(playString);
-
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-        createWindow.setScene(createScene);
-        createWindow.show();
+    	if (listView.getSelectionModel().getSelectedItem() != null) {
+	    	String playString = listView.getSelectionModel().getSelectedItem().toString();
+	
+	        FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource("something.fxml"));
+	        Parent createParent = loader.load();
+	        Scene createScene = new Scene(createParent, 500, 500);
+	        
+	        MediaPlayerController controller = loader.getController();
+	        controller.initData(playString);
+	
+	        //This gets the stage info
+	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+	
+	        createWindow.setScene(createScene);
+	        createWindow.show();
+    	}
 
     }
 
@@ -74,7 +105,7 @@ public class MenuController implements Initializable {
 
             int exitVal = process.waitFor();
             if (exitVal == 0) {
-                System.out.println("Success!");
+                
                 String[] strings = viewList.toArray(new String[viewList.size()]);
                 return strings;
             } else {
@@ -94,35 +125,5 @@ public class MenuController implements Initializable {
     }
 
 
-    /*
-    try {
-        String command = "echo \"==============================================================\"";
-        ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
-
-        Process process = pb.start();
-
-        BufferedReader stdout = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        BufferedReader stderr = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-
-        int exitStatus = process.waitFor();
-
-        if (exitStatus == 0) {
-            String line;
-            while((line = stdout.readLine()) != null) {
-                System.out.println(line);
-            }
-        } else {
-            String line;
-            while ((line = stderr.readLine()) != null) {
-                System.err.println("ya boi");
-            }
-        }
-    } catch (Exception e) {
-        System.out.println("Yeest");
-
-    }
-
-     */
     
-    //yeee
 }

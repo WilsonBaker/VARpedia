@@ -32,6 +32,10 @@ It welcomes you to the intitial menu, and shows 3 buttons and a list of creation
 # 2) Play Creation
  - You first need to select a creation from the list in order to play it
  - You then press the play button, and you will be sent of to a player that will play the creation
+ - The video will automatically be played
+ - You can press the arrow keys to fast foward or go back 5 seconds
+ - You can mute the audio by pressing the mute button
+ - You can also pause and play the video through the pause/play button
 
 # 3) Delete Creation
  - From the list on the main menu, you canselect a particular creation.
