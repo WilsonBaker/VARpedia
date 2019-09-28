@@ -1,5 +1,10 @@
 package sample;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +26,38 @@ public class Main extends Application {
         window.show();
     }
 
+    public static void runCommand(String com) {
+		 try {
+	            
+	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
+	            Process process = builder.start();
+
+	            InputStream out = process.getInputStream();
+	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+	            int exitStatus = process.waitFor();
+	            
+	            if(exitStatus ==0) {
+	            	
+	            }
+	            
+		 }catch(Exception ex) {
+	            ex.printStackTrace();
+	        }
+    }
     public static void main(String[] args) {
+    	File temp = new File("Audio");
+    	if(temp.exists()) {
+    		
+    	}else {
+    		runCommand("mkdir Audio");
+    	}
+    	File temp2 = new File("Creations");
+    	if(temp2.exists()) {
+    		
+    	}else {
+    		runCommand("mkdir Creations");
+    	}
         launch(args);
     }
 }
