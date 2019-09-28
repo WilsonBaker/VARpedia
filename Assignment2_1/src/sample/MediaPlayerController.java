@@ -1,12 +1,21 @@
 package sample;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.media.*;
+import javafx.scene.media.MediaPlayer.Status;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MediaPlayerController implements Initializable{
 	
@@ -24,8 +33,41 @@ public class MediaPlayerController implements Initializable{
 		_view.setMediaPlayer(_player);
 	}
 	
-	public void buttonPlay() {
-		_player.play();
+	public void buttonMute() {
+		if(_player.isMute()) {
+			_player.setMute(false);
+		} else {
+			_player.setMute(true);
+		}
+		
+	}
+	
+	public void buttonPlayPause() {
+		if (_player.getStatus() == Status.PLAYING) {
+			_player.pause();
+		} else {
+			_player.play();
+		}
+	}
+	
+	public void buttonMenu(ActionEvent event) throws IOException {
+        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+        Scene createScene = new Scene(createParent, 500, 500);
+
+        //This gets the stage info
+        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        createWindow.setScene(createScene);
+        createWindow.show();
+
+    }
+	
+	public void buttonForward() {
+		_player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
+	}
+	
+	public void buttonBack() {
+		_player.seek(_player.getCurrentTime().subtract(Duration.seconds(5)));
 	}
 
 	@Override
