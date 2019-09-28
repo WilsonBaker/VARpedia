@@ -66,9 +66,11 @@ public class SearchController implements Initializable {
         }
     }
     public void buttonSearch(ActionEvent event) throws IOException {
-    	runCommand("rm Audio/*.txt");
-    	runCommand("rm Audio/*.mp3");
-    	runCommand("rm Audio/*.wav");
+    	runCommand("rm ./Audio/*.txt");
+    	runCommand("rm ./Audio/*.mp3");
+    	runCommand("rm ./Audio/*.wav");
+    	runCommand("rm ./Creations/*.mp3");
+    	runCommand("rm ./Creations/*.wav");
     	response.setText("");
     	if (searchBar.getText().equals("")) {
     		
