@@ -22,7 +22,7 @@ public class WikitSearchTask extends Task {
     protected Object call() throws Exception {
     	
         try {
-            String wikitSearch = "wikit "+value+" | grep -Po \"\\b(?<d>.*?\\.(?:\\s|$))\""  ;
+            String wikitSearch = "wikit  "+value+" | grep -Po \"\\b(?<d>.*?\\.(?:\\s|$))\""  ;
             ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", wikitSearch);
 
             Process process = builder.start();

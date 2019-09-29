@@ -3,7 +3,14 @@
 VARpedia is an application that gives you the opportunity to make creations for your desires.
 
 # Testing Should be done on the VirtualBox image
-
+In order to run the easy to use method for this project you need the 
+VARpedia.jar file
+VARpedia.sh file 
+flickr-api-keys.txt file
+all in the same directory
+you then need to run the VARpedia.sh file
+using ./VARpedia.sh in the terminal for that directory
+and the process should begin
 # Instructions
 
 # Main Menu
