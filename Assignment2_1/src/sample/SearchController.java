@@ -7,10 +7,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.WorkerStateEvent;
@@ -34,6 +36,9 @@ public class SearchController implements Initializable {
 	
 	@FXML
 	private Text response;
+	
+	@FXML
+	private Button searchButton;
 	
     public void buttonMenu(ActionEvent event) throws IOException {
         Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
@@ -142,6 +147,9 @@ public class SearchController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    	searchButton.disableProperty().bind(
+    		    Bindings.isEmpty(searchBar.textProperty())
+    		    
+    		);
     }
 }

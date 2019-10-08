@@ -15,7 +15,7 @@
       </Text>
       <Button layoutX="185.0" layoutY="412.0" mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />
       <TextField fx:id="searchBar" layoutX="124.0" layoutY="224.0" />
-      <Button layoutX="314.0" layoutY="224.0" mnemonicParsing="false" onAction="#buttonSearch" text="Search" />
+      <Button fx:id="searchButton" layoutX="314.0" layoutY="224.0" mnemonicParsing="false" onAction="#buttonSearch" text="Search" />
       <Text layoutX="135.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a Creation" textAlignment="CENTER" underline="true" wrappingWidth="237.0">
          <font>
             <Font size="23.0" />

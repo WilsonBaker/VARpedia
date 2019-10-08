@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -32,12 +34,12 @@ import javafx.stage.Stage;
 
 public class ChooseAudioController implements Initializable {
 	 private String _wikitSearch;
-	 private Alert alert = new Alert(AlertType.INFORMATION);
+	 private Alert alert = new Alert(AlertType.ERROR);
 	 @FXML private ListView listAvailable;
 	 @FXML private ListView listCreation;
 	 @FXML private TextField creationName;
 	 @FXML private Text text;
-	 
+	 @FXML private Button createButton;
 	 @FXML private ChoiceBox picturesNo;
 	 public void setWikitName(String name) {
 		 _wikitSearch=name;
@@ -225,7 +227,13 @@ public class ChooseAudioController implements Initializable {
 	        String[] pictures = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 	        picturesNo.getItems().addAll(pictures);
 	        picturesNo.getSelectionModel().selectFirst();
+	        createButton.disableProperty().bind(
+				    Bindings.isEmpty(creationName.textProperty())
+				    
+				    
+				);
 	        
 	    }
+	 
 
 }

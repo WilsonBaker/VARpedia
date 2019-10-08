@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.beans.binding.Bindings;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class SelectionController implements Initializable {
@@ -30,11 +32,18 @@ public class SelectionController implements Initializable {
 	private TextField creation_name;
 	@FXML
 	private TextArea selected_lines;
+	@FXML
+	private Button previewButton;
+	@FXML
+	private Button createButton;
+	@FXML
+	private Button copyButton;
 	
 	@FXML
 	private ComboBox voice;
 	private String _wLines;
-	private Alert alert = new Alert(AlertType.INFORMATION);
+	private Alert alert = new Alert(AlertType.ERROR);
+	private Alert alert2 = new Alert(AlertType.INFORMATION);
 	private String[] words;
 	private String _wikitSearch;
 	
@@ -94,16 +103,22 @@ public class SelectionController implements Initializable {
     		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
     			@Override
     			public void handle(WorkerStateEvent event2) {
-    				alert.setContentText("Chunk " + creation_name.getText() + " Created");
-    				alert.setTitle("Chunk Created");
-    				alert.setHeaderText("Chunk Created");
-    				alert.show();
+    				alert2.setContentText("Chunk " + creation_name.getText() + " Created");
+    				alert2.setTitle("Chunk Created");
+    				alert2.setHeaderText("Chunk Created");
+    				alert2.show();
     			}
     		});
     		/*You need to add the change in scene over here to the movie creator*/
 		}
 		
 	}
+	
+	public void copyButton(ActionEvent event) throws IOException {
+		selected_lines.setText(lines.getSelectedText());
+	}
+	
+	
 	
 	public void buttonMenu(ActionEvent event) throws IOException {
 		File temp = new File("Audio");
@@ -155,6 +170,21 @@ public class SelectionController implements Initializable {
 		voice.getItems().addAll("festival","espeak");
 		voice.getSelectionModel().selectFirst();
 		
+		createButton.disableProperty().bind(
+			    Bindings.isEmpty(selected_lines.textProperty())
+			    .or(Bindings.isEmpty(creation_name.textProperty()))
+			    
+			);
+		previewButton.disableProperty().bind(
+			    Bindings.isEmpty(selected_lines.textProperty())
+			    
+			    
+			);
+		copyButton.disableProperty().bind(
+			    Bindings.isEmpty(lines.textProperty())
+			    
+			    
+			);
     }
 	
 

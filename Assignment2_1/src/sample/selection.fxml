@@ -26,8 +26,8 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Button layoutX="365.0" layoutY="362.0" mnemonicParsing="false" onAction="#preview" text="Preview" />
-      <Button layoutX="369.0" layoutY="415.0" mnemonicParsing="false" onAction="#create" text="Create" />
+      <Button fx:id="previewButton" layoutX="365.0" layoutY="362.0" mnemonicParsing="false" onAction="#preview" text="Preview" />
+      <Button fx:id="createButton" layoutX="369.0" layoutY="415.0" mnemonicParsing="false" onAction="#create" text="Create" />
       <Button layoutX="90.0" layoutY="453.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return to Main Menu" />
       <TextArea fx:id="lines" layoutX="67.0" layoutY="77.0" prefHeight="104.0" prefWidth="365.0" />
       <TextArea fx:id="selected_lines" layoutX="67.0" layoutY="239.0" prefHeight="104.0" prefWidth="365.0" />
@@ -38,5 +38,6 @@
          </font>
       </Text>
       <Button layoutX="322.0" layoutY="453.0" mnemonicParsing="false" onAction="#AudioScene" text="Make Creation" />
+      <Button fx:id="copyButton" layoutX="70.0" layoutY="192.0" mnemonicParsing="false" onAction="#copyButton" text="Copy" />
    </children>
 </AnchorPane>
