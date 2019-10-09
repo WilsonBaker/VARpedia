@@ -58,6 +58,15 @@ public class Main extends Application {
     	}else {
     		runCommand("mkdir Creations");
     	}
+    	File temp3 = new File("Background");
+    	if(temp3.exists()) {
+    		
+    	}else {
+    		runCommand("mkdir Background");
+    		DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
+			Thread thread = new Thread(musicTask);
+	 		thread.start();
+    	}
         launch(args);
     }
 }
