@@ -35,6 +35,8 @@ import javafx.stage.Stage;
 public class ChooseAudioController implements Initializable {
 	 private String _wikitSearch;
 	 private Alert alert = new Alert(AlertType.ERROR);
+	 private ArrayList<String> _rimages = new ArrayList<String>();
+	 
 	 @FXML private ListView listAvailable;
 	 @FXML private ListView listCreation;
 	 @FXML private TextField creationName;
@@ -154,7 +156,7 @@ public class ChooseAudioController implements Initializable {
 			 		audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 		    			@Override
 		    			public void handle(WorkerStateEvent event3) {
-		    				CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
+		    				CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem(),_rimages);
 					 		Thread thread = new Thread(createtask);
 					 		thread.start();
 			 		
@@ -162,10 +164,33 @@ public class ChooseAudioController implements Initializable {
 					 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 				    			@Override
 				    			public void handle(WorkerStateEvent event3) {
+				    				text.setText("");
 				    				
 				    				
+try {
+				    					
+					    				
+					    				
+					    		        FXMLLoader loader = new FXMLLoader();
+					    		        loader.setLocation(getClass().getResource("images.fxml"));
+					    		        Parent createParent = loader.load();
+					    		        Scene createScene = new Scene(createParent, 500, 500);
+					    		        
+					    		        ChooseImageController controller = loader.getController();
+					    		        
+					    		        controller.setImages(_rimages,_wikitSearch,creationName.getText());
+					    		
+					    		        //This gets the stage info
+					    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+					    		
+					    		        createWindow.setScene(createScene);
+					    		        createWindow.show();
+				    				}catch(IOException e) {
+				    					
+				    				}
+				    				/*
 				    				try {
-				    					text.setText("");
+				    					
 					    				String playString = creationName.getText();
 					    				
 					    		        FXMLLoader loader = new FXMLLoader();
@@ -184,7 +209,7 @@ public class ChooseAudioController implements Initializable {
 				    				}catch(IOException e) {
 				    					
 				    				}
-				    				
+				    				*/
 				    				/* Over here you need to play the video*/
 				    			}
 		    		});

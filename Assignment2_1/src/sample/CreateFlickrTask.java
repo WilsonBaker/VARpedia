@@ -23,7 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
 public class CreateFlickrTask extends Task{
-	private ArrayList<String> _rimages = new ArrayList<String>();
+	private ArrayList<String> _rimages;
 	private ArrayList<String> _images = new ArrayList<String>();
 	private String _wikitSearch ;
 	private String _name;
@@ -31,9 +31,10 @@ public class CreateFlickrTask extends Task{
 	/*private ObservableList audioList;*/
 	
 	private Float _duration = 0.0f;
-	public CreateFlickrTask(String search, String name , String number/*,ObservableList list*/) {
+	public CreateFlickrTask(String search, String name , String number, ArrayList<String> rimages/*,ObservableList list*/) {
 		_wikitSearch=search;
 		_name=name;
+		_rimages=rimages;
 		/*audioList = list;*/
 		try {
 			_number=Integer.parseInt(number);
@@ -105,7 +106,7 @@ public class CreateFlickrTask extends Task{
 			Flickr flickr = new Flickr(apiKey, sharedSecret, new REST());
 			
 			String query = _wikitSearch;
-			int resultsPerPage = _number;
+			int resultsPerPage = 10/*_number*/;
 			int page = 0;
 			
 			
@@ -132,6 +133,15 @@ public class CreateFlickrTask extends Task{
 				}
 	        	
 	        }
+	        
+	        for (String i : _images) {
+	        	String rimage = i.replace(".","new." );
+	        	_rimages.add(rimage);
+	        	runCommand("ffmpeg -y -i "+ i + " -vf scale=400:400 "+ rimage);
+	        	
+	        	
+	        }
+	        /*
 	        String wavLength = "soxi -D Creations/output.wav"  ;
 	        
 	        ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", wavLength);
@@ -179,7 +189,7 @@ public class CreateFlickrTask extends Task{
             runCommand("rm Creations/*.wav");
             runCommand("rm Creations/*.mp3");
             runCommand("rm Audio/*.wav");
-            runCommand("rm Audio/mylist.txt");
+            runCommand("rm Audio/mylist.txt");*/
             
             
 		} catch (Exception e) {

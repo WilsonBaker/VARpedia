@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChooseImageController">
+   <children>
+      <ImageView fx:id="img1" fitHeight="100.0" fitWidth="100.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img2" fitHeight="100.0" fitWidth="100.0" layoutX="100.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img3" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img4" fitHeight="100.0" fitWidth="100.0" layoutX="300.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img5" fitHeight="100.0" fitWidth="100.0" layoutX="400.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img6" fitHeight="100.0" fitWidth="100.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img7" fitHeight="100.0" fitWidth="100.0" layoutX="100.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img8" fitHeight="100.0" fitWidth="100.0" layoutX="200.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img9" fitHeight="100.0" fitWidth="100.0" layoutX="300.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img10" fitHeight="100.0" fitWidth="100.0" layoutX="400.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
+      <GridPane alignment="CENTER" layoutY="314.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <CheckBox fx:id="check1" contentDisplay="CENTER" mnemonicParsing="false">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check2" contentDisplay="CENTER" layoutX="10.0" layoutY="16.0" mnemonicParsing="false" GridPane.columnIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check3" contentDisplay="CENTER" mnemonicParsing="false" GridPane.columnIndex="2">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check4" contentDisplay="CENTER" layoutX="210.0" layoutY="16.0" mnemonicParsing="false" GridPane.columnIndex="3">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check5" contentDisplay="CENTER" layoutX="310.0" layoutY="16.0" mnemonicParsing="false" GridPane.columnIndex="4">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check6" contentDisplay="CENTER" layoutX="410.0" layoutY="16.0" mnemonicParsing="false" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check7" contentDisplay="CENTER" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check8" contentDisplay="CENTER" layoutX="110.0" layoutY="46.0" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check9" contentDisplay="CENTER" layoutX="210.0" layoutY="46.0" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+            <CheckBox fx:id="check10" contentDisplay="CENTER" layoutX="310.0" layoutY="46.0" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <padding>
+                  <Insets left="40.0" />
+               </padding>
+            </CheckBox>
+         </children>
+      </GridPane>
+      <Button layoutX="369.0" layoutY="426.0" mnemonicParsing="false" onAction="#create" text="Create" />
+      <Button layoutX="106.0" layoutY="426.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return To Main Menu" />
+   </children>
+</AnchorPane>
