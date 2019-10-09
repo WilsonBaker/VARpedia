@@ -147,40 +147,51 @@ public class ChooseAudioController implements Initializable {
     			
     			
 					text.setText("Creating...");
-					CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem(),listCreation.getItems());
-			 		Thread thread = new Thread(createtask);
+					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems());
+					Thread thread = new Thread(audiotask);
 			 		thread.start();
-	 		
-	 		
-			 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			 		
+			 		audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 		    			@Override
 		    			public void handle(WorkerStateEvent event3) {
-		    				
-		    				
-		    				try {
-		    					text.setText("");
-			    				String playString = creationName.getText();
-			    				
-			    		        FXMLLoader loader = new FXMLLoader();
-			    		        loader.setLocation(getClass().getResource("something.fxml"));
-			    		        Parent createParent = loader.load();
-			    		        Scene createScene = new Scene(createParent, 500, 500);
-			    		        
-			    		        MediaPlayerController controller = loader.getController();
-			    		        controller.initData(playString);
-			    		
-			    		        //This gets the stage info
-			    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-			    		
-			    		        createWindow.setScene(createScene);
-			    		        createWindow.show();
-		    				}catch(IOException e) {
-		    					
-		    				}
-		    				
-		    				/* Over here you need to play the video*/
+		    				CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem());
+					 		Thread thread = new Thread(createtask);
+					 		thread.start();
+			 		
+			 		
+					 		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+				    			@Override
+				    			public void handle(WorkerStateEvent event3) {
+				    				
+				    				
+				    				try {
+				    					text.setText("");
+					    				String playString = creationName.getText();
+					    				
+					    		        FXMLLoader loader = new FXMLLoader();
+					    		        loader.setLocation(getClass().getResource("something.fxml"));
+					    		        Parent createParent = loader.load();
+					    		        Scene createScene = new Scene(createParent, 500, 500);
+					    		        
+					    		        MediaPlayerController controller = loader.getController();
+					    		        controller.initData(playString);
+					    		
+					    		        //This gets the stage info
+					    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+					    		
+					    		        createWindow.setScene(createScene);
+					    		        createWindow.show();
+				    				}catch(IOException e) {
+				    					
+				    				}
+				    				
+				    				/* Over here you need to play the video*/
+				    			}
+		    		});
+		    			
 		    			}
-    		});
+			 		});
+					
     			
 			
 	 		

@@ -28,13 +28,13 @@ public class CreateFlickrTask extends Task{
 	private String _wikitSearch ;
 	private String _name;
 	private int _number;
-	private ObservableList audioList;
+	/*private ObservableList audioList;*/
 	
 	private Float _duration = 0.0f;
-	public CreateFlickrTask(String search, String name , String number,ObservableList list) {
+	public CreateFlickrTask(String search, String name , String number/*,ObservableList list*/) {
 		_wikitSearch=search;
 		_name=name;
-		audioList = list;
+		/*audioList = list;*/
 		try {
 			_number=Integer.parseInt(number);
 			
@@ -88,13 +88,13 @@ public class CreateFlickrTask extends Task{
     protected Object call() throws Exception {
 		String cmd;
 		String path = System.getProperty("user.dir");
-		for (Object item: this.audioList) {
+		/*for (Object item: this.audioList) {
 			cmd = "echo \"file '" + path + "/Audio/" + item.toString() + ".wav'\" >> ./Audio/mylist.txt";
 			runCommand(cmd);
 		}
 		
 		cmd = "ffmpeg -y -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Creations/output.wav";
-		runCommand(cmd);
+		runCommand(cmd);*/
 		
 		
 		
