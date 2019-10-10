@@ -22,9 +22,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ChooseImageController implements Initializable{
@@ -78,6 +83,18 @@ public class ChooseImageController implements Initializable{
 	@FXML
 	private CheckBox check10;
 	
+	@FXML
+	private TextField text;
+	
+	@FXML
+	private Text status;
+	
+	@FXML
+	private Button createButton;
+	
+	
+	private Alert alert = new Alert(AlertType.ERROR);
+	
 	public void setImages(ArrayList<String> images, String search, String name) {
 		System.out.println(images.get(0));
 		_search=search;
@@ -126,39 +143,48 @@ public class ChooseImageController implements Initializable{
 		if(check10.isSelected()) {
 			_chosen.add(_orig.get(9));
 		}
-		CreationTask audiotask = new CreationTask(_search,_name,_chosen);
-		Thread thread = new Thread(audiotask);
- 		thread.start();
- 		
- 		audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-			@Override
-			public void handle(WorkerStateEvent event3) {
-				
-				
-				try {
+		if(_chosen.size()==0) {
+			alert.setContentText("No Image Selected");
+			alert.setTitle("No Image Selected");
+			alert.setHeaderText("No Image Selected");
+			alert.show();
+		}else {
+			status.setText("Creating . . .");
+			CreationTask audiotask = new CreationTask(text.getText(),_name,_chosen);
+			Thread thread = new Thread(audiotask);
+	 		thread.start();
+	 		
+	 		audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+				@Override
+				public void handle(WorkerStateEvent event3) {
 					
-    				String playString = _name;
-    				
-    		        FXMLLoader loader = new FXMLLoader();
-    		        loader.setLocation(getClass().getResource("something.fxml"));
-    		        Parent createParent = loader.load();
-    		        Scene createScene = new Scene(createParent, 500, 500);
-    		        
-    		        MediaPlayerController controller = loader.getController();
-    		        controller.initData(playString);
-    		
-    		        //This gets the stage info
-    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-    		
-    		        createWindow.setScene(createScene);
-    		        createWindow.show();
-				}catch(IOException e) {
 					
+					try {
+						
+	    				String playString = _name;
+	    				
+	    		        FXMLLoader loader = new FXMLLoader();
+	    		        loader.setLocation(getClass().getResource("something.fxml"));
+	    		        Parent createParent = loader.load();
+	    		        Scene createScene = new Scene(createParent, 500, 500);
+	    		        
+	    		        MediaPlayerController controller = loader.getController();
+	    		        controller.initData(playString);
+	    		
+	    		        //This gets the stage info
+	    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    		
+	    		        createWindow.setScene(createScene);
+	    		        createWindow.show();
+					}catch(IOException e) {
+						
+					}
+					
+					/* Over here you need to play the video*/
 				}
-				
-				/* Over here you need to play the video*/
-			}
-});
+	 		});
+		}
+		
 		
 	}
 	public static void runCommand(String com) {
@@ -202,6 +228,10 @@ public class ChooseImageController implements Initializable{
 	
 	 @Override
 	    public void initialize(URL location, ResourceBundle resources) {
-	    	
+		 createButton.disableProperty().bind(
+				    Bindings.isEmpty(text.textProperty())
+				    
+				    
+				);
 	    }
 }
