@@ -13,15 +13,16 @@
       <Button layoutX="188.0" layoutY="281.0" mnemonicParsing="false" onAction="#buttonPlayPause" prefHeight="26.0" prefWidth="103.0" text="Play/Pause" />
       <Button layoutX="93.0" layoutY="281.0" mnemonicParsing="false" onAction="#buttonBack" prefHeight="26.0" prefWidth="64.0" text="&lt;--" />
       <Button layoutX="321.0" layoutY="281.0" mnemonicParsing="false" onAction="#buttonForward" prefHeight="26.0" prefWidth="64.0" text="--&gt;" />
-      <TextField fx:id="guess" layoutX="125.0" layoutY="384.0" />
-      <Text layoutX="14.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searched Term" />
+      <TextField fx:id="guess" layoutX="139.0" layoutY="384.0" />
+      <Text layoutX="20.0" layoutY="401.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searched Term:" />
       <Button fx:id="submit" layoutX="339.0" layoutY="384.0" mnemonicParsing="false" onAction="#submitAnswer" text="Submit" />
-      <Button layoutX="168.0" layoutY="438.0" mnemonicParsing="false" onAction="#buttonMenu" text="Back to Main Menu" />
+      <Button layoutX="139.0" layoutY="438.0" mnemonicParsing="false" onAction="#buttonMenu" prefHeight="26.0" prefWidth="171.0" text="Back to Main Menu" />
       <Button fx:id="next" layoutX="340.0" layoutY="438.0" mnemonicParsing="false" onAction="#nextButton" prefHeight="26.0" prefWidth="65.0" text="Next" />
       <Text fx:id="answer" layoutX="301.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="142.0">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
+      <Button layoutX="37.0" layoutY="438.0" mnemonicParsing="false" onAction="#giveUp" text="Give Up" />
    </children>
 </AnchorPane>

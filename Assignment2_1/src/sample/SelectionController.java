@@ -125,6 +125,7 @@ public class SelectionController implements Initializable {
 		for(File file: temp.listFiles()) {
 			file.delete();
 		}
+		temp.delete();
 		
         Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);

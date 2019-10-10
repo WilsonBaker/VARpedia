@@ -47,24 +47,30 @@ public class QuizController implements Initializable{
 	}
 	
 	public void submitAnswer(ActionEvent event) throws IOException {
-		if(guess.getText().toLowerCase().equals(_quiz.get(_index))) {
+		if(guess.getText().toLowerCase().equals(_quiz.get(_index).toLowerCase())) {
 			answer.setText("Correct");
+			if(!(_quiz.size()<_index+2)) {
+				next.setDisable(false);
+			}
 		}else {
 			answer.setText("Incorrect");
 		}
 		
+		
+		
+	}
+	public void giveUp(ActionEvent event) throws IOException {
+		answer.setText(_quiz.get(_index));
 		if(!(_quiz.size()<_index+2)) {
 			next.setDisable(false);
 		}
-		
 	}
 	
 	public void nextButton(ActionEvent event) throws IOException {
 		answer.setText("");
+		guess.setText("");
 		_index+=1;
-		if(_quiz.size()<_index+2) {
-			next.setDisable(true);
-		}
+		next.setDisable(true);
 		_fileURL = new File("./Quiz/" + _quiz.get(_index) + ".mp4");
 		_video = new Media(_fileURL.toURI().toString());
 		_player = new MediaPlayer(_video);

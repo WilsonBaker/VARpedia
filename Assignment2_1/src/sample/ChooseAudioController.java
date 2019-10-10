@@ -148,13 +148,12 @@ public class ChooseAudioController implements Initializable {
 				
     			
     			
-<<<<<<< HEAD
+
 					text.setText("Loading . . .");
 					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems(), music.getSelectionModel().getSelectedItem().toString());
-=======
-					text.setText("Loading...");
-					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems());
->>>>>>> branch 'master' of https://github.com/ArrogantCoder/Assignment_3.git
+
+					
+
 					Thread thread = new Thread(audiotask);
 			 		thread.start();
 			 		
@@ -236,24 +235,13 @@ try {
  		thread.start();
 	 }
 	 
-	 public void toMenu(ActionEvent event) throws IOException {
-			
-			
-	        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
-	        Scene createScene = new Scene(createParent, 500, 500);
-
-	        //This gets the stage info
-	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-
-	        createWindow.setScene(createScene);
-	        createWindow.show();
-	        
-	    }
+	 
 	 public void buttonMenu(ActionEvent event) throws IOException {
 			File temp = new File("Audio");
 			for(File file: temp.listFiles()) {
 				file.delete();
 			}
+			temp.delete();
 			
 	        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
 	        Scene createScene = new Scene(createParent, 500, 500);

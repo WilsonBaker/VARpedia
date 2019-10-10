@@ -24,8 +24,33 @@ public class MenuController implements Initializable {
     private Alert alert = new Alert(AlertType.ERROR);
     private ArrayList<String> _quiz = new ArrayList<String>();
     
+    public static void runCommand(String com) {
+		 try {
+	            
+	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
+	            Process process = builder.start();
+
+	            InputStream out = process.getInputStream();
+	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+	            int exitStatus = process.waitFor();
+	            
+	            if(exitStatus ==0) {
+	            	
+	            }
+	            
+		 }catch(Exception ex) {
+	            ex.printStackTrace();
+	        }
+    }
+    
     public void buttonCreate(ActionEvent event) throws IOException {
+    	File temp = new File("Audio");
+    	if(temp.exists()) {
+    		
+    	}else {
+    		runCommand("mkdir Audio");
+    	}
         Parent createParent = FXMLLoader.load(getClass().getResource("search.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);
 

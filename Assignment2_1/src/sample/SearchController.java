@@ -76,6 +76,7 @@ public class SearchController implements Initializable {
     	runCommand("rm Audio/*.wav");
     	runCommand("rm Creations/*.mp3");
     	runCommand("rm Creations/*.wav");
+    	runCommand("rm Audio");
     	response.setText("");
     	if (searchBar.getText().equals("")) {
     		

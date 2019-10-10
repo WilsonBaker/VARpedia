@@ -46,12 +46,7 @@ public class Main extends Application {
 	        }
     }
     public static void main(String[] args) {
-    	File temp = new File("Audio");
-    	if(temp.exists()) {
-    		
-    	}else {
-    		runCommand("mkdir Audio");
-    	}
+    	
     	
     	File temp2 = new File("Creations");
     	if(temp2.exists()) {
@@ -59,14 +54,8 @@ public class Main extends Application {
     	}else {
     		runCommand("mkdir Creations");
     	}
-<<<<<<< HEAD
-=======
-    	File temp3 = new File("Background");
-    	if(temp3.exists()) {
-    		
-    	}else {
-    		runCommand("mkdir Background");
-    	}
+
+    	
     	File temp4 = new File("Quiz");
     	if(temp4.exists()) {
     		
@@ -76,7 +65,7 @@ public class Main extends Application {
     	/*DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
 		Thread thread = new Thread(musicTask);
 		thread.start();*/
->>>>>>> branch 'master' of https://github.com/ArrogantCoder/Assignment_3.git
+
 		runCommand("rm -f hi.txt");
         runCommand("rm Creations/*.jpg");
         runCommand("rm Creations/*.wav");
