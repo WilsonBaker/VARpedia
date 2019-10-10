@@ -64,8 +64,8 @@
             </CheckBox>
          </children>
       </GridPane>
-      <Button fx:id="createButton" layoutX="369.0" layoutY="452.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="108.0" layoutY="452.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return To Main Menu" />
+      <Button fx:id="createButton" layoutX="381.0" layoutY="452.0" mnemonicParsing="false" onAction="#create" text="Create" />
+      <Button layoutX="172.0" layoutY="452.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return To Main Menu" />
       <CheckBox fx:id="check1" contentDisplay="CENTER" layoutY="208.0" mnemonicParsing="false">
          <padding>
             <Insets left="40.0" />
@@ -96,11 +96,11 @@
          <font>
             <Font size="15.0" />
          </font></Text>
-      <Text fx:id="status" layoutX="356.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="88.0">
+      <Text fx:id="status" layoutX="358.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="111.0">
          <font>
             <Font size="17.0" />
          </font></Text>
-      <Text layoutX="165.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images:" wrappingWidth="171.0">
+      <Text layoutX="173.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images:" wrappingWidth="171.0">
          <font>
             <Font size="22.0" />
          </font>

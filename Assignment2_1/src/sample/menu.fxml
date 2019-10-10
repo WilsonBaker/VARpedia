@@ -4,15 +4,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
    <children>
       <Label layoutX="20.0" layoutY="103.0" prefHeight="50.0" prefWidth="142.0" text="List of Creations:" underline="true" />
-      <Button layoutX="370.0" layoutY="175.0" maxHeight="50.0" maxWidth="77.0" mnemonicParsing="false" onAction="#buttonPlay" prefHeight="50.0" prefWidth="77.0" text="Play" />
-      <Button layoutX="365.0" layoutY="380.0" maxHeight="56.0" maxWidth="86.0" mnemonicParsing="false" onAction="#buttonDelete" prefHeight="56.0" prefWidth="86.0" text="Delete" />
       <HBox layoutX="20.0" layoutY="153.0" prefHeight="300.0" prefWidth="300.0">
          <children>
             <ListView fx:id="listView" maxHeight="300.0" prefHeight="300.0" prefWidth="250.0" />
@@ -24,7 +25,25 @@
          </font>
       </Text>
       <Text layoutX="130.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wilson Baker, Pranavan Kailainathan" />
-      <Button layoutX="370.0" layoutY="278.0" maxHeight="50.0" maxWidth="77.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="50.0" prefWidth="77.0" text="Create" />
-      <Button layoutX="308.0" layoutY="237.0" mnemonicParsing="false" onAction="#buttonQuiz" text="Quiz" />
+      <GridPane layoutX="337.0" layoutY="153.0" prefHeight="268.0" prefWidth="100.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="13.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="13.0" prefHeight="13.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="13.0" prefHeight="100.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="13.0" prefHeight="13.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="13.0" prefHeight="100.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button mnemonicParsing="false" onAction="#buttonPlay" prefHeight="80.0" prefWidth="100.0" text="Play" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonQuiz" prefHeight="80.0" prefWidth="100.0" text="Quiz" GridPane.rowIndex="6" />
+            <Button layoutX="10.0" layoutY="83.0" mnemonicParsing="false" onAction="#buttonDelete" prefHeight="80.0" prefWidth="100.0" text="Delete" GridPane.rowIndex="4" />
+            <Button layoutX="10.0" layoutY="156.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="80.0" prefWidth="100.0" text="Create" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

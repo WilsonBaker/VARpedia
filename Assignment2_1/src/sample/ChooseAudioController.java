@@ -148,7 +148,7 @@ public class ChooseAudioController implements Initializable {
 				
     			
     			
-					text.setText("Loading . . .");
+					text.setText("Loading...");
 					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems());
 					Thread thread = new Thread(audiotask);
 			 		thread.start();

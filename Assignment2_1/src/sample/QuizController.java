@@ -47,7 +47,7 @@ public class QuizController implements Initializable{
 	}
 	
 	public void submitAnswer(ActionEvent event) throws IOException {
-		if(guess.getText().equals(_quiz.get(_index))) {
+		if(guess.getText().toLowerCase().equals(_quiz.get(_index))) {
 			answer.setText("Correct");
 		}else {
 			answer.setText("Incorrect");

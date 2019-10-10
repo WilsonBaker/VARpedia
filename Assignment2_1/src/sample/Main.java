@@ -71,9 +71,9 @@ public class Main extends Application {
     	}else {
     		runCommand("mkdir Quiz");
     	}
-    	DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
+    	/*DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
 		Thread thread = new Thread(musicTask);
-		thread.start();
+		thread.start();*/
 		runCommand("rm -f hi.txt");
         runCommand("rm Creations/*.jpg");
         runCommand("rm Creations/*.wav");

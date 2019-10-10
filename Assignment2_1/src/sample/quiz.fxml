@@ -16,9 +16,9 @@
       <TextField fx:id="guess" layoutX="125.0" layoutY="384.0" />
       <Text layoutX="14.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searched Term" />
       <Button fx:id="submit" layoutX="339.0" layoutY="384.0" mnemonicParsing="false" onAction="#submitAnswer" text="Submit" />
-      <Button layoutX="94.0" layoutY="438.0" mnemonicParsing="false" onAction="#buttonMenu" text="Back to Main Menu" />
-      <Button fx:id="next" layoutX="354.0" layoutY="438.0" mnemonicParsing="false" onAction="#nextButton" prefHeight="26.0" prefWidth="65.0" text="Next" />
-      <Text fx:id="answer" layoutX="301.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="142.0">
+      <Button layoutX="168.0" layoutY="438.0" mnemonicParsing="false" onAction="#buttonMenu" text="Back to Main Menu" />
+      <Button fx:id="next" layoutX="340.0" layoutY="438.0" mnemonicParsing="false" onAction="#nextButton" prefHeight="26.0" prefWidth="65.0" text="Next" />
+      <Text fx:id="answer" layoutX="301.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="142.0">
          <font>
             <Font size="25.0" />
          </font>
