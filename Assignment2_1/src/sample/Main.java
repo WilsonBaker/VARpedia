@@ -68,6 +68,12 @@ public class Main extends Application {
     	DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
 		Thread thread = new Thread(musicTask);
 		thread.start();
+		runCommand("rm -f hi.txt");
+        runCommand("rm Creations/*.jpg");
+        runCommand("rm Creations/*.wav");
+        runCommand("rm Creations/*.mp3");
+        runCommand("rm Audio/*.wav");
+        runCommand("rm Audio/mylist.txt");
         launch(args);
     }
 }
