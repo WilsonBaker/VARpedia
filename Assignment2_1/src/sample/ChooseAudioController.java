@@ -42,7 +42,7 @@ public class ChooseAudioController implements Initializable {
 	 @FXML private TextField creationName;
 	 @FXML private Text text;
 	 @FXML private Button createButton;
-	 @FXML private ChoiceBox picturesNo;
+	 @FXML private ChoiceBox music;
 	 public void setWikitName(String name) {
 		 _wikitSearch=name;
 		 
@@ -149,14 +149,14 @@ public class ChooseAudioController implements Initializable {
     			
     			
 					text.setText("Loading . . .");
-					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems());
+					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems(), music.getSelectionModel().getSelectedItem().toString());
 					Thread thread = new Thread(audiotask);
 			 		thread.start();
 			 		
 			 		audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 		    			@Override
 		    			public void handle(WorkerStateEvent event3) {
-		    				CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)picturesNo.getSelectionModel().getSelectedItem(),_rimages);
+		    				CreateFlickrTask createtask = new CreateFlickrTask(_wikitSearch ,creationName.getText(),(String)music.getSelectionModel().getSelectedItem(),_rimages);
 					 		Thread thread = new Thread(createtask);
 					 		thread.start();
 			 		
@@ -225,6 +225,12 @@ try {
 		
 	 }
 	 
+	 public void preview(ActionEvent event) throws IOException {
+		PreviewMusicTask previewMsc = new PreviewMusicTask(music.getSelectionModel().getSelectedItem().toString());
+ 		Thread thread = new Thread(previewMsc);
+ 		thread.start();
+	 }
+	 
 	 public void toMenu(ActionEvent event) throws IOException {
 			
 			
@@ -256,10 +262,12 @@ try {
 	    }
 	 @Override
 	    public void initialize(URL location, ResourceBundle resources) {
+		 	String[] musiclist = {"Happy", "Sad", "Scary", "Calm", "Action"};
 	        String[] strings = getCreations();
 	        listAvailable.getItems().addAll(strings);
 	        listAvailable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	        
+	        music.getItems().addAll(musiclist);
+	        music.getSelectionModel().selectFirst();
 	        
 	        createButton.disableProperty().bind(
 				    Bindings.isEmpty(creationName.textProperty())

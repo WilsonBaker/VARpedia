@@ -9,10 +9,12 @@ import javafx.concurrent.Task;
 
 public class CreateAudioTask extends Task{
 	private ObservableList audioList;
+	private String _music;
 	
 	
-	public CreateAudioTask(ObservableList list) {
+	public CreateAudioTask(ObservableList list, String music) {
 		audioList=list;
+		_music = music;
 	}
 	public static void runCommand(String com) {
 		 try {
@@ -42,8 +44,9 @@ public class CreateAudioTask extends Task{
 			runCommand(cmd);
 		}
 		
-		cmd = "ffmpeg -y -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Creations/output.wav";
+		cmd = "ffmpeg -y -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Audio/speech.wav";
 		runCommand(cmd);
+		runCommand("ffmpeg -y -i ./Audio/speech.wav -i ./Music/" + _music + ".mp3 -filter_complex \"[0:0]volume=2.0[a];[1:0]volume=1.0[b];[a][b]amix=inputs=2:duration=shortest\" ./Creations/output.wav");
 		
 		return null;
 		
