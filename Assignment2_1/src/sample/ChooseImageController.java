@@ -214,7 +214,7 @@ public class ChooseImageController implements Initializable{
         runCommand("rm Creations/*.mp3");
         runCommand("rm Audio/*.wav");
         runCommand("rm Audio/mylist.txt");
-        runCommand("rm Audio");
+        runCommand("rm -r Audio");
 		
         Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);

@@ -41,6 +41,12 @@ public class SearchController implements Initializable {
 	private Button searchButton;
 	
     public void buttonMenu(ActionEvent event) throws IOException {
+    	runCommand("rm Audio/*.txt");
+    	runCommand("rm Audio/*.mp3");
+    	runCommand("rm Audio/*.wav");
+    	runCommand("rm Creations/*.mp3");
+    	runCommand("rm Creations/*.wav");
+    	runCommand("rm -r Audio");
         Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
         Scene createScene = new Scene(createParent, 500, 500);
 
@@ -76,7 +82,7 @@ public class SearchController implements Initializable {
     	runCommand("rm Audio/*.wav");
     	runCommand("rm Creations/*.mp3");
     	runCommand("rm Creations/*.wav");
-    	runCommand("rm Audio");
+    	
     	response.setText("");
     	if (searchBar.getText().equals("")) {
     		

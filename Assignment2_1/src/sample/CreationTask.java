@@ -112,7 +112,7 @@ public class CreationTask extends Task{
         runCommand("rm Creations/*.mp3");
         runCommand("rm Audio/*.wav");
         runCommand("rm Audio/mylist.txt");
-        runCommand("rm Audio");
+        runCommand("rm -r Audio");
        
 		
 		
