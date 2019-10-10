@@ -65,6 +65,12 @@ public class Main extends Application {
     	}else {
     		runCommand("mkdir Background");
     	}
+    	File temp4 = new File("Quiz");
+    	if(temp4.exists()) {
+    		
+    	}else {
+    		runCommand("mkdir Quiz");
+    	}
     	DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
 		Thread thread = new Thread(musicTask);
 		thread.start();

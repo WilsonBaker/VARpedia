@@ -150,7 +150,7 @@ public class ChooseImageController implements Initializable{
 			alert.show();
 		}else {
 			status.setText("Creating . . .");
-			CreationTask audiotask = new CreationTask(text.getText(),_name,_chosen);
+			CreationTask audiotask = new CreationTask(text.getText(),_name,_chosen,_search);
 			Thread thread = new Thread(audiotask);
 	 		thread.start();
 	 		

@@ -25,5 +25,6 @@
       </Text>
       <Text layoutX="130.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wilson Baker, Pranavan Kailainathan" />
       <Button layoutX="370.0" layoutY="278.0" maxHeight="50.0" maxWidth="77.0" mnemonicParsing="false" onAction="#buttonCreate" prefHeight="50.0" prefWidth="77.0" text="Create" />
+      <Button layoutX="308.0" layoutY="237.0" mnemonicParsing="false" onAction="#buttonQuiz" text="Quiz" />
    </children>
 </AnchorPane>
