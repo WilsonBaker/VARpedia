@@ -133,7 +133,20 @@ public class MenuController implements Initializable {
     			_quiz.add(file.getName().replace(".mp4", ""));
     			
     		}
-    		System.out.println(_quiz.get(0));
+    		
+    		FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource("quiz.fxml"));
+	        Parent createParent = loader.load();
+	        Scene createScene = new Scene(createParent, 500, 500);
+	        
+	        QuizController controller = loader.getController();
+	        controller.initData(_quiz);
+	
+	        //This gets the stage info
+	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+	
+	        createWindow.setScene(createScene);
+	        createWindow.show();
     	}
 		
     }
