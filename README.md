@@ -69,3 +69,10 @@ It welcomes you to the intitial menu, and shows 3 buttons and a list of creation
  - At any point you can return to the main menu by pressing the return to main menu button.
  - You can also quit the application at any point by closing it.
 
+
+# Attributes
+ - Our Big House by Snowflake (c) copyright 2014 Licensed under a Creative Commons Attribution Noncommercial  (3.0) license. http://dig.ccmixter.org/files/snowflake/47129 Ft: alexjc916, Vidian, George Ellinas
+ - House of Ghosts by gurdonark (c) copyright 2016 Licensed under a Creative Commons Attribution Noncommercial  (3.0) license. http://dig.ccmixter.org/files/gurdonark/55028 Ft: Robbero 
+ - Waves Of Tranquility  by spinningmerkaba (c) copyright 2019 Licensed under a Creative Commons Attribution Noncommercial  (3.0) license. http://dig.ccmixter.org/files/jlbrock44/59736 Ft: gurdonark,speck
+ - Funk 'n' Jazz by texasradiofish (c) copyright 2015 Licensed under a Creative Commons Attribution Noncommercial  (3.0) license. http://dig.ccmixter.org/files/texasradiofish/51247 Ft: Bill Ray, Stefan Kartenberg, Reiswerk
+ - Like Music (cdk Mix) by Analog By Nature (c) copyright 2015 Licensed under a Creative Commons Attribution Share-Alike  (3.0) license. http://dig.ccmixter.org/files/cdk/48915 Ft: Phasenwandler
