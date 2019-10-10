@@ -34,6 +34,7 @@ public class MediaPlayerController implements Initializable{
 	}
 	
 	public void buttonMute() {
+		
 		if(_player.isMute()) {
 			_player.setMute(false);
 		} else {

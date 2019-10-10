@@ -8,7 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -19,6 +21,8 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
 
     @FXML private ListView listView;
+    private Alert alert = new Alert(AlertType.ERROR);
+    private ArrayList<String> _quiz = new ArrayList<String>();
     
 
     public void buttonCreate(ActionEvent event) throws IOException {
@@ -117,6 +121,35 @@ public class MenuController implements Initializable {
         }
         return null;
    }
+    public void buttonQuiz(ActionEvent event) throws IOException{
+    	File temp = new File("Quiz");
+    	if (temp.listFiles().length==0) {
+    		alert.setContentText("No Pre-Created Creations");
+			alert.setTitle("No Pre-Created Creations");
+			alert.setHeaderText("No Pre-Created Creations");
+			alert.show();
+    	}else {
+    		for(File file: temp.listFiles()) {
+    			_quiz.add(file.getName().replace(".mp4", ""));
+    			
+    		}
+    		
+    		FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(getClass().getResource("quiz.fxml"));
+	        Parent createParent = loader.load();
+	        Scene createScene = new Scene(createParent, 500, 500);
+	        
+	        QuizController controller = loader.getController();
+	        controller.initData(_quiz);
+	
+	        //This gets the stage info
+	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+	
+	        createWindow.setScene(createScene);
+	        createWindow.show();
+    	}
+		
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

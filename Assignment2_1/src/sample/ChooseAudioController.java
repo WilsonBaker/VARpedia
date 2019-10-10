@@ -148,8 +148,13 @@ public class ChooseAudioController implements Initializable {
 				
     			
     			
+<<<<<<< HEAD
 					text.setText("Loading . . .");
 					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems(), music.getSelectionModel().getSelectedItem().toString());
+=======
+					text.setText("Loading...");
+					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems());
+>>>>>>> branch 'master' of https://github.com/ArrogantCoder/Assignment_3.git
 					Thread thread = new Thread(audiotask);
 			 		thread.start();
 			 		

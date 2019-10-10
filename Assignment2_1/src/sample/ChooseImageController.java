@@ -96,7 +96,7 @@ public class ChooseImageController implements Initializable{
 	private Alert alert = new Alert(AlertType.ERROR);
 	
 	public void setImages(ArrayList<String> images, String search, String name) {
-		System.out.println(images.get(0));
+		
 		_search=search;
 		_name=name;
 		_orig=images;
@@ -149,8 +149,8 @@ public class ChooseImageController implements Initializable{
 			alert.setHeaderText("No Image Selected");
 			alert.show();
 		}else {
-			status.setText("Creating . . .");
-			CreationTask audiotask = new CreationTask(text.getText(),_name,_chosen);
+			status.setText("Creating...");
+			CreationTask audiotask = new CreationTask(text.getText(),_name,_chosen,_search);
 			Thread thread = new Thread(audiotask);
 	 		thread.start();
 	 		
