@@ -7,6 +7,7 @@ In order to run the easy to use method for this project you need the
 VARpedia.jar file
 VARpedia.sh file 
 flickr-api-keys.txt file
+Music folder with the mp3 files Action,Calm,Happy,Sad,Scary inside
 all in the same directory
 you then need to run the VARpedia.sh file
 using ./VARpedia.sh in the terminal for that directory
@@ -20,7 +21,7 @@ It welcomes you to the intitial menu, and shows 3 buttons and a list of creation
 1) you can choose to create your own creation
 2) you can play your creations
 3) you can delete unwanted creations
-
+4) you can choose to work on a quiz to test your learning
 # 1) Create Creation
  - This process begins when you press the create creations button
  - You first are required to choose what you want to search on wikipedia.
@@ -30,10 +31,14 @@ It welcomes you to the intitial menu, and shows 3 buttons and a list of creation
  - You may choose to either preview or create chunks of audio from the text in the second box in  either espeak or festival
  - Once you have decided that you have made enough chunks, you can press the create creation button to start making the creation.
  - You can then choose which chunks you want to put in the creation. This is done by moving the selcted chunk to the right
+ - You must then select the background music you want to add to your creation. You can preview it.
  - You then need to choose a name for your creation, that that will be the name of the creation.
- - Once you have selected your name, your creation will be complete. 
- - This will be indicated by a pop up window, confirming the creation. Congratulations!
- - The user then will be taken back to the main menu where they can play the creation.
+ - Once you have selected your name, you will then be asked to choose your images. 
+ - You can select at most 10 images and at least 1 image to add to your creation with the checkboxes representing the image above
+ - Once you have sekected your images, you need to choose the text to appear in the creation.
+ - You then press create and your creation is created
+ - This will be indicated by your creation being played.
+ 
  
 
 # 2) Play Creation
@@ -47,6 +52,17 @@ It welcomes you to the intitial menu, and shows 3 buttons and a list of creation
 # 3) Delete Creation
  - From the list on the main menu, you canselect a particular creation.
  - In order to delete the creation, you just need to press on delete.
+
+# 4) Quiz
+ - From the main menu you can press the quiz button to do a quiz
+ - A video will be played that has audio but no text
+ - You have to guess the search term that was used to make that video
+ - If you get it right, you will get the correct text and you can move to the next video
+ - If you get it wrong, you will get the incorrect text and need to try again
+ - If you choose to give up, by pressing the give up button the correct search term will be given and you can move on to the next video
+ - If you have the ability to move on, by giving up or getting it correct, you can press the next button that moves on to the next video
+
+
 
  
 # Returning to Main Menu
