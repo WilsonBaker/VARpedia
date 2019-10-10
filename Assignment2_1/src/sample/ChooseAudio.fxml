@@ -47,7 +47,7 @@
       <Label layoutX="303.0" layoutY="58.0" text="Current Creation:" underline="true" />
       <VBox alignment="CENTER" layoutX="17.0" layoutY="381.0" prefHeight="103.0" prefWidth="155.0" spacing="10.0">
          <children>
-            <Label text="Number of Pictures:">
+            <Label text="Music">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -64,5 +64,6 @@
          </font>
       </Text>
       <Button layoutX="179.0" layoutY="471.0" mnemonicParsing="false" onAction="#buttonMenu" text="Back to Main Menu" />
+      <Button layoutX="64.0" layoutY="473.0" mnemonicParsing="false" text="Preview" />
    </children>
 </AnchorPane>

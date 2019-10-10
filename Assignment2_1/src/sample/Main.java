@@ -52,20 +52,18 @@ public class Main extends Application {
     	}else {
     		runCommand("mkdir Audio");
     	}
+    	
     	File temp2 = new File("Creations");
     	if(temp2.exists()) {
     		
     	}else {
     		runCommand("mkdir Creations");
     	}
-    	File temp3 = new File("Background");
+    	File temp3 = new File("Music");
     	if(temp3.exists()) {
     		
     	}else {
-    		runCommand("mkdir Background");
-    		DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
-			Thread thread = new Thread(musicTask);
-	 		thread.start();
+    		runCommand("mkdir Music");
     	}
         launch(args);
     }

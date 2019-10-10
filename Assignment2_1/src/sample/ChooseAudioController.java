@@ -148,7 +148,7 @@ public class ChooseAudioController implements Initializable {
 				
     			
     			
-					text.setText("Creating...");
+					text.setText("Loading . . .");
 					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems());
 					Thread thread = new Thread(audiotask);
 			 		thread.start();
@@ -260,9 +260,7 @@ try {
 	        listAvailable.getItems().addAll(strings);
 	        listAvailable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	        
-	        String[] pictures = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-	        picturesNo.getItems().addAll(pictures);
-	        picturesNo.getSelectionModel().selectFirst();
+	        
 	        createButton.disableProperty().bind(
 				    Bindings.isEmpty(creationName.textProperty())
 				    
