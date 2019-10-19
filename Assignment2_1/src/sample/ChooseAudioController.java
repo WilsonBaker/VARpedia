@@ -117,6 +117,11 @@ public class ChooseAudioController implements Initializable {
 			alert.setTitle("Empty Fields Required");
 			alert.setHeaderText("Empty Fields Required");
 			alert.show();
+		} else if(creationName.getText().contains(" ")) {
+			alert.setContentText("Field Contains Space");
+			alert.setTitle("Field Contains Space");
+			alert.setHeaderText("Field Contains Space");
+			alert.show();
 		}else if(temp.exists()){
 			alert.setContentText("Creation " + creationName.getText()+ " exists");
 			alert.setTitle("Creation Exists");
