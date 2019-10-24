@@ -5,57 +5,84 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChooseAudioController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@../Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChooseAudioController">
    <children>
-      <Label layoutX="25.0" layoutY="58.0" text="Available Audio Files:" underline="true" />
-      <HBox alignment="CENTER" layoutX="5.0" layoutY="81.0" prefHeight="300.0" prefWidth="490.0">
+      <HBox alignment="CENTER" layoutX="5.0" layoutY="14.0" prefHeight="300.0" prefWidth="490.0">
          <children>
-            <ListView fx:id="listAvailable" prefHeight="300.0" prefWidth="180.0" />
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <VBox alignment="CENTER" prefHeight="300.0" prefWidth="180.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addButton" text="ADD --&gt;">
+                  <Label text="Available Audio Files:" underline="true">
                      <font>
-                        <Font size="12.0" />
+                        <Font name="AnjaliOldLipi Regular" size="18.0" />
                      </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#removeButton" text="&lt;-- REMOVE" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
+                  </Label>
+                  <ListView fx:id="listAvailable" prefHeight="300.0" prefWidth="180.0" />
                </children>
-            </GridPane>
-            <ListView fx:id="listCreation" prefHeight="300.0" prefWidth="180.0" />
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="277.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="125.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addButton" prefWidth="70.0" text="ADD">
+                           <font>
+                              <Font name="AnjaliOldLipi Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/plus.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#removeButton" text="REMOVE">
+                           <font>
+                              <Font name="AnjaliOldLipi Regular" size="13.0" />
+                           </font>
+                        </Button>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Icons/remove.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0">
+               <children>
+                  <Label text="Current Creation:" underline="true">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="18.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="listCreation" prefHeight="300.0" prefWidth="180.0" />
+               </children>
+            </VBox>
          </children>
       </HBox>
-      <Label layoutX="303.0" layoutY="58.0" text="Current Creation:" underline="true" />
-      <VBox alignment="CENTER" layoutX="17.0" layoutY="381.0" prefHeight="103.0" prefWidth="155.0" spacing="10.0">
+      <VBox alignment="CENTER" layoutX="17.0" layoutY="345.0" prefHeight="103.0" prefWidth="155.0" spacing="10.0">
          <children>
-            <Label text="Music">
+            <Label prefHeight="25.0" prefWidth="48.0" text="Music">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="AnjaliOldLipi Regular" size="18.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="music" prefWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#preview" text="Preview" />
          </children>
       </VBox>
-      <Text layoutX="182.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation Name:" />
+      <Text layoutX="182.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Creation Name:" />
       <TextField fx:id="creationName" layoutX="182.0" layoutY="433.0" />
       <Button fx:id="createButton" layoutX="386.0" layoutY="433.0" mnemonicParsing="false" onAction="#flickr" text="Create" />
       <Text fx:id="text" layoutX="357.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="120.0">
@@ -63,7 +90,15 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Button layoutX="179.0" layoutY="471.0" mnemonicParsing="false" onAction="#buttonMenu" text="Back to Main Menu" />
-      <Button layoutX="64.0" layoutY="473.0" mnemonicParsing="false" onAction="#preview" text="Preview" />
+      <HBox alignment="BOTTOM_LEFT" layoutY="446.0" prefHeight="50.0" prefWidth="250.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/back.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
