@@ -39,5 +39,11 @@
     -fx-control-inner-background-alt: light-primary-color;
 }
 
+.choice-box { -fx-background-color: primary-text-color; }
+.choice-box .context-menu { -fx-background-color: text-primary-color; }
+.choice-box .menu-item:focused { -fx-background-color: light-primary-color; }
+.choice-box .menu-item > .label { -fx-text-fill: primary-text-color; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: primary-text-color; }
+
 
 
