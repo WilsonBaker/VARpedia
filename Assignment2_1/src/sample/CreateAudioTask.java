@@ -11,11 +11,12 @@ public class CreateAudioTask extends Task{
 	private ObservableList audioList;
 	private String _music;
 	
-	
+	/* This constructor obtains the list of audio chunks and the music from the controller*/
 	public CreateAudioTask(ObservableList list, String music) {
 		audioList=list;
 		_music = music;
 	}
+	/* This method runs commands using a bash command as a parameter*/
 	public static void runCommand(String com) {
 		 try {
 	            
@@ -35,7 +36,9 @@ public class CreateAudioTask extends Task{
 	            ex.printStackTrace();
 	        }
 	}
+	
 	@Override
+	/* When this task is run on a thread it combines audio chunks and music into one output.wav*/
     protected Object call() throws Exception {
 		String cmd;
 		String path = System.getProperty("user.dir");

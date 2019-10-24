@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+/*This controller handles the scene for the wikit search that is implemented on the search FXML file*/
 public class SearchController implements Initializable {
 	private String _wikitSearch;
 	private ArrayList<String> wList;
@@ -39,7 +39,7 @@ public class SearchController implements Initializable {
 	
 	@FXML
 	private Button searchButton;
-	
+	/* This method returns to the main menu*/
     public void buttonMenu(ActionEvent event) throws IOException {
     	runCommand("rm Audio/*.txt");
     	runCommand("rm Audio/*.mp3");
@@ -57,6 +57,7 @@ public class SearchController implements Initializable {
         createWindow.show();
 
     }
+    /* This method takes a string bash command and runs it*/
     public void runCommand(String com) {
     	try {
             
@@ -76,6 +77,7 @@ public class SearchController implements Initializable {
             ex.printStackTrace();
         }
     }
+    /*THis method  starts the search task and moves on to the selection scene*/
     public void buttonSearch(ActionEvent event) throws IOException {
     	runCommand("rm Audio/*.txt");
     	runCommand("rm Audio/*.mp3");
@@ -131,6 +133,7 @@ public class SearchController implements Initializable {
     	
 
     }
+    /* This method moves the scene to the selection scene*/
     public void toSelect(ActionEvent event) throws IOException {
     	FXMLLoader loader = new FXMLLoader();
     	loader.setLocation(getClass().getResource("selection.fxml"));

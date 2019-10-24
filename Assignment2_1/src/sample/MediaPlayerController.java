@@ -24,7 +24,7 @@ public class MediaPlayerController implements Initializable{
 	private MediaPlayer _player;
 	@FXML private MediaView _view;
 	
-	
+	/* Constructor with the selected file to play as string*/
 	public void initData(String filename) {
 		_fileURL = new File("./Creations/" + filename + ".mp4");
 		_video = new Media(_fileURL.toURI().toString());
@@ -32,7 +32,7 @@ public class MediaPlayerController implements Initializable{
 		_player.setAutoPlay(true);
 		_view.setMediaPlayer(_player);
 	}
-	
+	/* Method that mutes player*/
 	public void buttonMute() {
 		
 		if(_player.isMute()) {
@@ -42,7 +42,7 @@ public class MediaPlayerController implements Initializable{
 		}
 		
 	}
-	
+	/*Method that pauses or plays the player*/
 	public void buttonPlayPause() {
 		if (_player.getStatus() == Status.PLAYING) {
 			_player.pause();
@@ -63,11 +63,11 @@ public class MediaPlayerController implements Initializable{
         createWindow.show();
 
     }
-	
+	/*Fast forward the player*/
 	public void buttonForward() {
 		_player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
 	}
-	
+	/* Go back in the player*/
 	public void buttonBack() {
 		_player.seek(_player.getCurrentTime().subtract(Duration.seconds(5)));
 	}

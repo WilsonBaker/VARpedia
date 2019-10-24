@@ -5,9 +5,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javafx.concurrent.Task;
-
+/* This task has a purpose of previewing the audio chunks with a voice*/
 public class PreviewTask extends Task {
-/*espeak "string"*/
+
 	private String _lines;
 	private Object _voice;
 	public PreviewTask(String lines, Object voice) {
@@ -16,6 +16,7 @@ public class PreviewTask extends Task {
 	}
 	
 	@Override
+	/*When the task is run, the lines can be played in both espeak and festival*/
     protected Object call() throws Exception {
     	if(_voice.equals("espeak")) {
     		try {

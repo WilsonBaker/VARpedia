@@ -21,7 +21,7 @@ import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+/* This class is the controller for the scene that is implemented by the quiz FXML file*/
 public class QuizController implements Initializable{
 	
 	private File _fileURL;
@@ -34,7 +34,7 @@ public class QuizController implements Initializable{
 	@FXML private TextField guess;
 	private int _index;
 	@FXML private Text answer;
-	
+	/* This methods gets data for the quiz that is necessary*/
 	public void initData(ArrayList<String> quiz) {
 		_quiz=quiz;
 		_index=0;
@@ -45,7 +45,7 @@ public class QuizController implements Initializable{
 		_view.setMediaPlayer(_player);
 		next.setDisable(true);
 	}
-	
+	/* This methods checks the submitted answer and compares it to the actual*/
 	public void submitAnswer(ActionEvent event) throws IOException {
 		if(guess.getText().toLowerCase().equals(_quiz.get(_index).toLowerCase())) {
 			answer.setText("Correct");
@@ -59,13 +59,14 @@ public class QuizController implements Initializable{
 		
 		
 	}
+	/* This method gives the user the ability to see the answer*/
 	public void giveUp(ActionEvent event) throws IOException {
 		answer.setText(_quiz.get(_index));
 		if(!(_quiz.size()<_index+2)) {
 			next.setDisable(false);
 		}
 	}
-	
+	/*This method gives the user the ability to move on to the next creation when they get the answer right or gives up*/
 	public void nextButton(ActionEvent event) throws IOException {
 		answer.setText("");
 		guess.setText("");
@@ -78,6 +79,7 @@ public class QuizController implements Initializable{
 		_view.setMediaPlayer(_player);
 		
 	}
+	/* This method pauses or plays the player for the quiz*/
 	public void buttonPlayPause() {
 		if (_player.getStatus() == Status.PLAYING) {
 			_player.pause();
@@ -85,7 +87,7 @@ public class QuizController implements Initializable{
 			_player.play();
 		}
 	}
-	
+	/*This method returns the user to the main menu scene*/
 	public void buttonMenu(ActionEvent event) throws IOException {
 		_player.dispose();
         Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
@@ -98,11 +100,11 @@ public class QuizController implements Initializable{
         createWindow.show();
 
     }
-	
+	/* This method fast fowards the player*/
 	public void buttonForward() {
 		_player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
 	}
-	
+	/* This method goes back on the player*/
 	public void buttonBack() {
 		_player.seek(_player.getCurrentTime().subtract(Duration.seconds(5)));
 	}

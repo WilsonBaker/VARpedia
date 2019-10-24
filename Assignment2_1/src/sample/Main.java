@@ -25,7 +25,7 @@ public class Main extends Application {
         window.setScene(new Scene(root, 500, 500));
         window.show();
     }
-
+    /* This method takes a string parameter that is a bash command and runs it on terminal*/
     public static void runCommand(String com) {
 		 try {
 	            
@@ -47,7 +47,7 @@ public class Main extends Application {
     }
     public static void main(String[] args) {
     	
-    	
+    	/* Create folders if they do not exist*/
     	File temp2 = new File("Creations");
     	if(temp2.exists()) {
     		
@@ -62,10 +62,8 @@ public class Main extends Application {
     	}else {
     		runCommand("mkdir Quiz");
     	}
-    	/*DownloadBackgroundMusicTask musicTask = new DownloadBackgroundMusicTask();
-		Thread thread = new Thread(musicTask);
-		thread.start();*/
-
+    	
+    	/* Clear when start*/
 		runCommand("rm -f hi.txt");
         runCommand("rm Creations/*.jpg");
         runCommand("rm Creations/*.wav");

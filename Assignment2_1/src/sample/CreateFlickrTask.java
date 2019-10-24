@@ -63,15 +63,14 @@ public class CreateFlickrTask extends Task{
 	            ex.printStackTrace();
 	        }
 	}
+	/* This method grabs tha API key from the txt file*/
 	public static String getAPIKey(String key) throws Exception {
-		// TODO fix the following based on where you will have your config file stored
+		
 
 		String config = System.getProperty("user.dir") 
 				+ System.getProperty("file.separator")+ "flickr-api-keys.txt"; 
 		
-//		String config = System.getProperty("user.home")
-//				+ System.getProperty("file.separator")+ "bin" 
-//				+ System.getProperty("file.separator")+ "flickr-api-keys.txt"; 
+
 		File file = new File(config); 
 		BufferedReader br = new BufferedReader(new FileReader(file)); 
 		
@@ -86,16 +85,11 @@ public class CreateFlickrTask extends Task{
 		throw new RuntimeException("Couldn't find " + key +" in config file "+file.getName());
 	}
 	@Override
+	/*When the task is run the 10 photos are stored in an array*/
     protected Object call() throws Exception {
 		String cmd;
 		String path = System.getProperty("user.dir");
-		/*for (Object item: this.audioList) {
-			cmd = "echo \"file '" + path + "/Audio/" + item.toString() + ".wav'\" >> ./Audio/mylist.txt";
-			runCommand(cmd);
-		}
 		
-		cmd = "ffmpeg -y -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Creations/output.wav";
-		runCommand(cmd);*/
 		
 		
 		
@@ -118,7 +112,7 @@ public class CreateFlickrTask extends Task{
 	        
 	        PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
 	        
-	        
+	        /* Make all images the same size*/
 	        for (Photo photo: results) {
 	        	
 	        	try {
@@ -141,56 +135,7 @@ public class CreateFlickrTask extends Task{
 	        	
 	        	
 	        }
-	        /*
-	        String wavLength = "soxi -D Creations/output.wav"  ;
 	        
-	        ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", wavLength);
-
-	        Process process = builder.start();
-	       
-	        InputStream out = process.getInputStream();
-	        BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	        String length = stdout.readLine();
-	        int exitStatus = process.waitFor();
-            
-            if(exitStatus ==0) {
-            	 try {
-     	        	_duration = Float.parseFloat(length);
-     	        	
-     	        }catch(NumberFormatException e){
-     	        	
-     	 
-     	        }
-            }
-	        
-	        Float each = _duration/(_images.size());
-	        
-	        for (String i : _images) {
-	        	String rimage = i.replace(".","new." );
-	        	_rimages.add(rimage);
-	        	runCommand("ffmpeg -y -i "+ i + " -vf scale=400:400 "+ rimage);
-	        	
-	        	
-	        }
-	        runCommand("touch hi.txt");
-            
-            for (String i : _rimages) {
-            	
-            	runCommand("echo \"file '"+i+"'\nduration "+each+"\" >> hi.txt");
-
-            }
-            
-            runCommand("echo \"file '"+_rimages.get(_rimages.size()-1)+"'\" >> hi.txt");
-            
-            
-            runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_wikitSearch+"\"  -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Creations/"+_name+".mp4 ; ffmpeg -y -i ./Creations/"+_name+".mp4 -t "+_duration+" ./Creations/"+_name+".mp4 ");
-            runCommand("rm -f hi.txt");
-            runCommand("rm Creations/*.jpg");
-            runCommand("rm Creations/*.wav");
-            runCommand("rm Creations/*.mp3");
-            runCommand("rm Audio/*.wav");
-            runCommand("rm Audio/mylist.txt");*/
-            
             
 		} catch (Exception e) {
 			

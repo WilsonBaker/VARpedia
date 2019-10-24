@@ -31,8 +31,9 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+/* This is the class that controls the scene that is determined using the ChooseAudio fxml file*/
 public class ChooseAudioController implements Initializable {
+	
 	 private String _wikitSearch;
 	 private Alert alert = new Alert(AlertType.ERROR);
 	 private ArrayList<String> _rimages = new ArrayList<String>();
@@ -43,11 +44,12 @@ public class ChooseAudioController implements Initializable {
 	 @FXML private Text text;
 	 @FXML private Button createButton;
 	 @FXML private ChoiceBox music;
+	 /* This method is to get the search term from another scene*/
 	 public void setWikitName(String name) {
 		 _wikitSearch=name;
 		 
 	 }
-	 
+	 /* The get Creations method looks for audio chunks in the wav file and adds them to a list for a list view*/
 	 public String[]  getCreations() {
 		 String path = System.getProperty("user.dir");
 
@@ -84,7 +86,7 @@ public class ChooseAudioController implements Initializable {
 	        }
 	        return null;
 	   }
-	 
+	 /* This method adds chunks to a list called listCreation that contains the chunks in the creation*/
 	 public void addButton() {
 		 
 		 ObservableList listOfFiles = listAvailable.getSelectionModel().getSelectedItems();
@@ -94,7 +96,7 @@ public class ChooseAudioController implements Initializable {
 		 }
 	 }
 	 
-
+	 /* This method removes the selected chunk from the list listCreation hence from the creation*/
 	 public void removeButton() {
 		 
 		 int i = listCreation.getSelectionModel().getSelectedIndex();
@@ -104,6 +106,7 @@ public class ChooseAudioController implements Initializable {
 		 }
 		 
 	 }
+	 /* This method goes to the scene of selecting images when button pressed*/
 	 public void flickr(ActionEvent event) throws IOException {
 		File temp = new File("Creations/"+creationName.getText()+".mp4");
 		if(listCreation.getItems().size()==0) {
@@ -127,33 +130,10 @@ public class ChooseAudioController implements Initializable {
 			alert.setTitle("Creation Exists");
 			alert.setHeaderText("Creation Exists");
 			alert.show();
-			try {
-	            String del = "rm Audio/*.wav";
-	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", del);
-
-	            Process process = builder.start();
-
-	            InputStream out = process.getInputStream();
-	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	            int exitStatus = process.waitFor();
-	            
-	            if(exitStatus ==0) {
-	            	
-	            }
-	            
-			}catch(Exception ex) {
-	            ex.printStackTrace();
-	        }
+			
 			
 		}else {
-			/*run another task to combine audio files here*/
-			/* combined mp3 needs to be in the creations folder*/
 			
-			
-				
-    			
-    			
-
 					text.setText("Loading . . .");
 					CreateAudioTask audiotask = new CreateAudioTask(listCreation.getItems(), music.getSelectionModel().getSelectedItem().toString());
 
@@ -175,8 +155,8 @@ public class ChooseAudioController implements Initializable {
 				    			public void handle(WorkerStateEvent event3) {
 				    				text.setText("");
 				    				
-				    				
-try {
+				    				/*once images are found go to next scene*/
+				    				try {
 				    					
 					    				
 					    				
@@ -197,29 +177,7 @@ try {
 				    				}catch(IOException e) {
 				    					
 				    				}
-				    				/*
-				    				try {
-				    					
-					    				String playString = creationName.getText();
-					    				
-					    		        FXMLLoader loader = new FXMLLoader();
-					    		        loader.setLocation(getClass().getResource("something.fxml"));
-					    		        Parent createParent = loader.load();
-					    		        Scene createScene = new Scene(createParent, 500, 500);
-					    		        
-					    		        MediaPlayerController controller = loader.getController();
-					    		        controller.initData(playString);
-					    		
-					    		        //This gets the stage info
-					    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-					    		
-					    		        createWindow.setScene(createScene);
-					    		        createWindow.show();
-				    				}catch(IOException e) {
-				    					
-				    				}
-				    				*/
-				    				/* Over here you need to play the video*/
+				    				
 				    			}
 		    		});
 		    			
@@ -233,14 +191,14 @@ try {
 		}
 		
 	 }
-	 
+	 /* This method is used to preview the music for the creations*/
 	 public void preview(ActionEvent event) throws IOException {
 		PreviewMusicTask previewMsc = new PreviewMusicTask(music.getSelectionModel().getSelectedItem().toString());
  		Thread thread = new Thread(previewMsc);
  		thread.start();
 	 }
 	 
-	 
+	 /* This method is used to clear files when trying to return to main menu*/
 	 public void buttonMenu(ActionEvent event) throws IOException {
 			File temp = new File("Audio");
 			for(File file: temp.listFiles()) {

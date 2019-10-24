@@ -23,7 +23,7 @@ public class MenuController implements Initializable {
     @FXML private ListView listView;
     private Alert alert = new Alert(AlertType.ERROR);
     private ArrayList<String> _quiz = new ArrayList<String>();
-    
+    /* Method that runs commands using string bash commands*/
     public static void runCommand(String com) {
 		 try {
 	            
@@ -43,7 +43,7 @@ public class MenuController implements Initializable {
 	            ex.printStackTrace();
 	        }
     }
-    
+    /* Method that starts the creation process and moves to the next scene of searching wikipedia*/
     public void buttonCreate(ActionEvent event) throws IOException {
     	File temp = new File("Audio");
     	if(temp.exists()) {
@@ -62,7 +62,7 @@ public class MenuController implements Initializable {
 
     }
     
-    
+    /* Method that deletes selected creations*/
     public void buttonDelete(ActionEvent event) throws IOException{
     	int i = listView.getSelectionModel().getSelectedIndex();
     	if (listView.getSelectionModel().getSelectedItem() != null) {
@@ -91,6 +91,7 @@ public class MenuController implements Initializable {
     	}
     	
     }
+    /* Method that moves on to the next scene of something*/
     public void buttonPlay(ActionEvent event) throws IOException{
     	if (listView.getSelectionModel().getSelectedItem() != null) {
 	    	String playString = listView.getSelectionModel().getSelectedItem().toString();
@@ -111,7 +112,7 @@ public class MenuController implements Initializable {
     	}
 
     }
-
+    /* This method grabs creations and puts them in a list for the list view*/
     public String[]  getCreations() {
 
         try {
@@ -146,6 +147,7 @@ public class MenuController implements Initializable {
         }
         return null;
    }
+    /* Button that changes to new scene(quiz scene) using past created creations*/
     public void buttonQuiz(ActionEvent event) throws IOException{
     	File temp = new File("Quiz");
     	if (temp.listFiles().length==0) {

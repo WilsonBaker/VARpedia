@@ -23,7 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
+/* This class is the controller for the line selection scene that is implemented by the selection FXML file*/
 public class SelectionController implements Initializable {
 	@FXML
 	private TextArea lines;
@@ -46,14 +46,14 @@ public class SelectionController implements Initializable {
 	private Alert alert2 = new Alert(AlertType.INFORMATION);
 	private String[] words;
 	private String _wikitSearch;
-	
+	/* THis method is used to collect the lines from the search scene*/
 	public void setLines(String largeLines, String wikitSearch){
 		_wLines=largeLines;
 		lines.setText(largeLines);
 		_wikitSearch=wikitSearch;
 		
 	}
-	
+	/* This method previews the selected lines with the selected voice(runs the PreviewTask*/
 	public void preview(ActionEvent event) throws IOException {
 		words= selected_lines.getText().split("\\s+");
 		if(words.length>30) {
@@ -73,7 +73,7 @@ public class SelectionController implements Initializable {
 		}
 		
 	}
-	
+	/* This method checks if the creation name is correct and lines are fine(runs PreviewTask)  */
 	public void create(ActionEvent event) throws IOException {
 		
 		words= selected_lines.getText().split("\\s+");
@@ -118,13 +118,13 @@ public class SelectionController implements Initializable {
 		}
 		
 	}
-	
+	/*This method copys created lines to selected lines*/
 	public void copyButton(ActionEvent event) throws IOException {
 		selected_lines.setText(lines.getSelectedText());
 	}
 	
 	
-	
+	/* This method changes the scene to the menu scene*/
 	public void buttonMenu(ActionEvent event) throws IOException {
 		File temp = new File("Audio");
 		for(File file: temp.listFiles()) {
@@ -142,7 +142,7 @@ public class SelectionController implements Initializable {
         createWindow.show();
         
     }
-	
+	/*This method moves the scene to the ChooseAudio scene which is implemented by ChooseAudio FXML file*/
 	public void AudioScene (ActionEvent event) throws IOException {
 		File temp = new File("Audio");
 		if(temp.listFiles().length == 0) {
@@ -169,13 +169,14 @@ public class SelectionController implements Initializable {
 	}
 	
 	@Override
+	
     public void initialize(URL location, ResourceBundle resources) {
 		lines.setWrapText(true);
 		selected_lines.setWrapText(true);
 		
 		voice.getItems().addAll("festival","espeak");
 		voice.getSelectionModel().selectFirst();
-		
+		/*Set bind the empty property of certain text fields to the buttons*/
 		createButton.disableProperty().bind(
 			    Bindings.isEmpty(selected_lines.textProperty())
 			    .or(Bindings.isEmpty(creation_name.textProperty()))

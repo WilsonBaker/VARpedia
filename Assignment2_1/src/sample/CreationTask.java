@@ -21,7 +21,7 @@ import com.flickr4java.flickr.photos.Size;
 
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
-
+/* Creates creation from combination of output.wav and images*/
 public class CreationTask extends Task{
 	private ArrayList<String> _rimages;
 	
@@ -30,7 +30,7 @@ public class CreationTask extends Task{
 	private String _text;
 	private String _empty=" ";
 	
-	/*private ObservableList audioList;*/
+	
 	
 	private Float _duration = 0.0f;
 	public CreationTask(String search, String name , ArrayList<String> rimages ,String text/*,ObservableList list*/) {
@@ -38,10 +38,11 @@ public class CreationTask extends Task{
 		_name=name;
 		_rimages=rimages;
 		_text=text;
-		/*audioList = list;*/
+		
 		
 		
 	}
+	/*Method runs bash commands through a string parameter*/
 	public static void runCommand(String com) {
 		 try {
 	            
@@ -61,7 +62,7 @@ public class CreationTask extends Task{
 	            ex.printStackTrace();
 	        }
 	}
-	
+	/*When run the output file combines the output.wav and images with the text for a creation*/
 	@Override
     protected Object call() throws Exception {
 		
@@ -103,9 +104,10 @@ public class CreationTask extends Task{
        
         runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_wikitSearch+"\"  -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Creations/"+_name+".mp4 ; ffmpeg -y -i ./Creations/"+_name+".mp4 -t "+_duration+" ./Creations/"+_name+".mp4 ");
         if(!(temp.exists())){
+        	/*Creates second creation for quiz*/
         	runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_empty+"\" -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Quiz/"+_text+".mp4 ; ffmpeg -y -i ./Quiz/"+_text+".mp4 -t "+_duration+" ./Quiz/"+_text+".mp4 ");
         }
-        
+        /* Clears all unnecessary files upon creation*/
         runCommand("rm -f hi.txt");
         runCommand("rm Creations/*.jpg");
         runCommand("rm Creations/*.wav");

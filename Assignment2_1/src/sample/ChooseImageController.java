@@ -31,7 +31,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+/* The purpose of this class is to have a controller that runs the scene with the images fxml file*/
 public class ChooseImageController implements Initializable{
 	private ArrayList<String> _orig;
 	private ArrayList<String> _chosen = new ArrayList<String>();
@@ -94,7 +94,7 @@ public class ChooseImageController implements Initializable{
 	
 	
 	private Alert alert = new Alert(AlertType.ERROR);
-	
+	/* After searching the images on flickr and storing the paths, we put the images on Image views in the scene*/
 	public void setImages(ArrayList<String> images, String search, String name) {
 		
 		_search=search;
@@ -112,6 +112,7 @@ public class ChooseImageController implements Initializable{
 		img10.setImage(new Image("file:"+images.get(9)));
 	
 	}
+	/* This method creates a creation from the output audio file and the selected images*/
 	public void create(ActionEvent event) throws IOException {
 		if(check1.isSelected()) {
 			_chosen.add(_orig.get(0));
@@ -143,6 +144,7 @@ public class ChooseImageController implements Initializable{
 		if(check10.isSelected()) {
 			_chosen.add(_orig.get(9));
 		}
+		/* must select one image or more*/
 		if(_chosen.size()==0) {
 			alert.setContentText("No Image Selected");
 			alert.setTitle("No Image Selected");
@@ -158,7 +160,7 @@ public class ChooseImageController implements Initializable{
 				@Override
 				public void handle(WorkerStateEvent event3) {
 					
-					
+					/* After creating, play creation*/
 					try {
 						
 	    				String playString = _name;
@@ -180,13 +182,14 @@ public class ChooseImageController implements Initializable{
 						
 					}
 					
-					/* Over here you need to play the video*/
+					
 				}
 	 		});
 		}
 		
 		
 	}
+	/* This method takes a bash command as string and runs the bash command*/
 	public static void runCommand(String com) {
 		 try {
 	            
@@ -206,7 +209,7 @@ public class ChooseImageController implements Initializable{
 	            ex.printStackTrace();
 	        }
 	}
-	
+	/* This method returns to main menu and clears all unnecessary files*/
 	public void buttonMenu(ActionEvent event) throws IOException {
 		runCommand("rm -f hi.txt");
         runCommand("rm Creations/*.jpg");
@@ -229,6 +232,7 @@ public class ChooseImageController implements Initializable{
 	
 	 @Override
 	    public void initialize(URL location, ResourceBundle resources) {
+		 /* cant move on with empty creation name*/
 		 createButton.disableProperty().bind(
 				    Bindings.isEmpty(text.textProperty())
 				    
