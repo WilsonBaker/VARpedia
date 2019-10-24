@@ -104,7 +104,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
                <children>
-                  <Button mnemonicParsing="false" onAction="#buttonQuit" prefHeight="100.0" prefWidth="120.0" stylesheets="@palette.css" text="Quit">
+                  <Button mnemonicParsing="false" onAction="#buttonQuit" prefHeight="100.0" prefWidth="120.0" text="Quit">
                      <font>
                         <Font name="AnjaliOldLipi Regular" size="24.0" />
                      </font>
