@@ -10,7 +10,7 @@ import javafx.concurrent.Task;
 public class CreateAudioTask extends Task{
 	private ObservableList audioList;
 	private String _music;
-	
+
 	/* This constructor obtains the list of audio chunks and the music from the controller*/
 	public CreateAudioTask(ObservableList list, String music) {
 		audioList=list;
@@ -18,41 +18,41 @@ public class CreateAudioTask extends Task{
 	}
 	/* This method runs commands using a bash command as a parameter*/
 	public static void runCommand(String com) {
-		 try {
-	            
-	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+		try {
 
-	            Process process = builder.start();
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
-	            InputStream out = process.getInputStream();
-	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	            int exitStatus = process.waitFor();
-	            
-	            if(exitStatus ==0) {
-	            	
-	            }
-	            
-		 }catch(Exception ex) {
-	            ex.printStackTrace();
-	        }
+			Process process = builder.start();
+
+			InputStream out = process.getInputStream();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+			int exitStatus = process.waitFor();
+
+			if(exitStatus ==0) {
+
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
-	
+
 	@Override
 	/* When this task is run on a thread it combines audio chunks and music into one output.wav*/
-    protected Object call() throws Exception {
+	protected Object call() throws Exception {
 		String cmd;
 		String path = System.getProperty("user.dir");
 		for (Object item: this.audioList) {
 			cmd = "echo \"file '" + path + "/Audio/" + item.toString() + ".wav'\" >> ./Audio/mylist.txt";
 			runCommand(cmd);
 		}
-		
+
 		cmd = "ffmpeg -y -f concat -safe 0 -i ./Audio/mylist.txt -c copy ./Audio/speech.wav";
 		runCommand(cmd);
 		runCommand("ffmpeg -y -i ./Audio/speech.wav -i ./Music/" + _music + ".mp3 -filter_complex \"[0:0]volume=2.0[a];[1:0]volume=1.0[b];[a][b]amix=inputs=2:duration=shortest\" ./Creations/output.wav");
-		
+
 		return null;
-		
+
 	}
 
 }

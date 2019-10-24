@@ -18,12 +18,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MediaPlayerController implements Initializable{
-	
+
 	private File _fileURL;
 	private Media _video;
 	private MediaPlayer _player;
 	@FXML private MediaView _view;
-	
+
 	/* Constructor with the selected file to play as string*/
 	public void initData(String filename) {
 		_fileURL = new File("./Creations/" + filename + ".mp4");
@@ -34,13 +34,13 @@ public class MediaPlayerController implements Initializable{
 	}
 	/* Method that mutes player*/
 	public void buttonMute() {
-		
+
 		if(_player.isMute()) {
 			_player.setMute(false);
 		} else {
 			_player.setMute(true);
 		}
-		
+
 	}
 	/*Method that pauses or plays the player*/
 	public void buttonPlayPause() {
@@ -50,19 +50,19 @@ public class MediaPlayerController implements Initializable{
 			_player.play();
 		}
 	}
-	
+
 	public void buttonMenu(ActionEvent event) throws IOException {
 		_player.dispose();
-        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        Scene createScene = new Scene(createParent, 500, 500);
+		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Scene createScene = new Scene(createParent, 500, 500);
 
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        createWindow.setScene(createScene);
-        createWindow.show();
+		createWindow.setScene(createScene);
+		createWindow.show();
 
-    }
+	}
 	/*Fast forward the player*/
 	public void buttonForward() {
 		_player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
@@ -75,8 +75,8 @@ public class MediaPlayerController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 
 }

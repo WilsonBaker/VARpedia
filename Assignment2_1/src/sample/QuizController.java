@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 /* This class is the controller for the scene that is implemented by the quiz FXML file*/
 public class QuizController implements Initializable{
-	
+
 	private File _fileURL;
 	private Media _video;
 	private MediaPlayer _player;
@@ -55,9 +55,9 @@ public class QuizController implements Initializable{
 		}else {
 			answer.setText("Incorrect");
 		}
-		
-		
-		
+
+
+
 	}
 	/* This method gives the user the ability to see the answer*/
 	public void giveUp(ActionEvent event) throws IOException {
@@ -77,7 +77,7 @@ public class QuizController implements Initializable{
 		_player = new MediaPlayer(_video);
 		_player.setAutoPlay(true);
 		_view.setMediaPlayer(_player);
-		
+
 	}
 	/* This method pauses or plays the player for the quiz*/
 	public void buttonPlayPause() {
@@ -90,16 +90,16 @@ public class QuizController implements Initializable{
 	/*This method returns the user to the main menu scene*/
 	public void buttonMenu(ActionEvent event) throws IOException {
 		_player.dispose();
-        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        Scene createScene = new Scene(createParent, 500, 500);
+		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Scene createScene = new Scene(createParent, 500, 500);
 
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        createWindow.setScene(createScene);
-        createWindow.show();
+		createWindow.setScene(createScene);
+		createWindow.show();
 
-    }
+	}
 	/* This method fast fowards the player*/
 	public void buttonForward() {
 		_player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
@@ -113,12 +113,12 @@ public class QuizController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		submit.disableProperty().bind(
-    		    Bindings.isEmpty(guess.textProperty())
-    		    
-    		);
-		
+				Bindings.isEmpty(guess.textProperty())
+
+				);
+
 	}
-	
+
 
 }
 

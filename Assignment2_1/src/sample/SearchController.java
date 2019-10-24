@@ -33,133 +33,133 @@ public class SearchController implements Initializable {
 	private ArrayList<String> wList;
 	@FXML
 	private TextField searchBar;
-	
+
 	@FXML
 	private Text response;
-	
+
 	@FXML
 	private Button searchButton;
 	/* This method returns to the main menu*/
-    public void buttonMenu(ActionEvent event) throws IOException {
-    	runCommand("rm Audio/*.txt");
-    	runCommand("rm Audio/*.mp3");
-    	runCommand("rm Audio/*.wav");
-    	runCommand("rm Creations/*.mp3");
-    	runCommand("rm Creations/*.wav");
-    	runCommand("rm -r Audio");
-        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        Scene createScene = new Scene(createParent, 500, 500);
+	public void buttonMenu(ActionEvent event) throws IOException {
+		runCommand("rm Audio/*.txt");
+		runCommand("rm Audio/*.mp3");
+		runCommand("rm Audio/*.wav");
+		runCommand("rm Creations/*.mp3");
+		runCommand("rm Creations/*.wav");
+		runCommand("rm -r Audio");
+		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Scene createScene = new Scene(createParent, 500, 500);
 
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
 
-        createWindow.setScene(createScene);
-        createWindow.show();
+		createWindow.setScene(createScene);
+		createWindow.show();
 
-    }
-    /* This method takes a string bash command and runs it*/
-    public void runCommand(String com) {
-    	try {
-            
-            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+	}
+	/* This method takes a string bash command and runs it*/
+	public void runCommand(String com) {
+		try {
 
-            Process process = builder.start();
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
-            InputStream out = process.getInputStream();
-            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-            int exitStatus = process.waitFor();
-            
-            if(exitStatus ==0) {
-            	
-            }
-            
-	 }catch(Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-    /*THis method  starts the search task and moves on to the selection scene*/
-    public void buttonSearch(ActionEvent event) throws IOException {
-    	runCommand("rm Audio/*.txt");
-    	runCommand("rm Audio/*.mp3");
-    	runCommand("rm Audio/*.wav");
-    	runCommand("rm Creations/*.mp3");
-    	runCommand("rm Creations/*.wav");
-    	
-    	response.setText("");
-    	if (searchBar.getText().equals("")) {
-    		
-    		response.setText("Empty Search");
-    	} else {
-    		_wikitSearch=searchBar.getText();
-    		WikitSearchTask wikitSearchTask = new WikitSearchTask(searchBar.getText());
-    		Thread thread = new Thread(wikitSearchTask);
-    		thread.start();
-    		response.setText("Loading . . .");
-    		wikitSearchTask.messageProperty().addListener(new ChangeListener<String>() {
-    			@Override
-    			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-    					
-    			}
-    			});
-    		wikitSearchTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-    			@Override
-    			public void handle(WorkerStateEvent event2) {
-    					
-    					wList= wikitSearchTask.getline();
-    					
-    					try {
-    						toSelect(event);
-    					} catch(IOException e) {
-    					
-    					}
-    					
-    					
-    					
-    					
-    			}
-    			
-    		});
+			Process process = builder.start();
 
-    		wikitSearchTask.setOnCancelled(new EventHandler<WorkerStateEvent>() {
-    			@Override
-    			public void handle(WorkerStateEvent event2) {
-    					
-    					
-    					response.setText("No Search Found");
-    					
-    			}
-    		});
-    	}
-    	
+			InputStream out = process.getInputStream();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+			int exitStatus = process.waitFor();
 
-    }
-    /* This method moves the scene to the selection scene*/
-    public void toSelect(ActionEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("selection.fxml"));
-    	Parent createParent= loader.load();
-        Scene createScene = new Scene(createParent, 500, 500);
-        
-        SelectionController controller = loader.getController();
-        String largeLines = "";
-        for(int i=0;i<wList.size();i++) {
-        	largeLines= largeLines + wList.get(i) + "\n";
-        }
-        controller.setLines(largeLines, _wikitSearch);
-        
-        
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+			if(exitStatus ==0) {
 
-        createWindow.setScene(createScene);
-        createWindow.show();
-    }
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	searchButton.disableProperty().bind(
-    		    Bindings.isEmpty(searchBar.textProperty())
-    		    
-    		);
-    }
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	/*THis method  starts the search task and moves on to the selection scene*/
+	public void buttonSearch(ActionEvent event) throws IOException {
+		runCommand("rm Audio/*.txt");
+		runCommand("rm Audio/*.mp3");
+		runCommand("rm Audio/*.wav");
+		runCommand("rm Creations/*.mp3");
+		runCommand("rm Creations/*.wav");
+
+		response.setText("");
+		if (searchBar.getText().equals("")) {
+
+			response.setText("Empty Search");
+		} else {
+			_wikitSearch=searchBar.getText();
+			WikitSearchTask wikitSearchTask = new WikitSearchTask(searchBar.getText());
+			Thread thread = new Thread(wikitSearchTask);
+			thread.start();
+			response.setText("Loading . . .");
+			wikitSearchTask.messageProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+				}
+			});
+			wikitSearchTask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+				@Override
+				public void handle(WorkerStateEvent event2) {
+
+					wList= wikitSearchTask.getline();
+
+					try {
+						toSelect(event);
+					} catch(IOException e) {
+
+					}
+
+
+
+
+				}
+
+			});
+
+			wikitSearchTask.setOnCancelled(new EventHandler<WorkerStateEvent>() {
+				@Override
+				public void handle(WorkerStateEvent event2) {
+
+
+					response.setText("No Search Found");
+
+				}
+			});
+		}
+
+
+	}
+	/* This method moves the scene to the selection scene*/
+	public void toSelect(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("selection.fxml"));
+		Parent createParent= loader.load();
+		Scene createScene = new Scene(createParent, 500, 500);
+
+		SelectionController controller = loader.getController();
+		String largeLines = "";
+		for(int i=0;i<wList.size();i++) {
+			largeLines= largeLines + wList.get(i) + "\n";
+		}
+		controller.setLines(largeLines, _wikitSearch);
+
+
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+		createWindow.setScene(createScene);
+		createWindow.show();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		searchButton.disableProperty().bind(
+				Bindings.isEmpty(searchBar.textProperty())
+
+				);
+	}
 }

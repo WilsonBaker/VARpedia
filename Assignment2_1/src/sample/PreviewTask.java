@@ -14,41 +14,41 @@ public class PreviewTask extends Task {
 		_lines=lines;
 		_voice=voice;
 	}
-	
+
 	@Override
 	/*When the task is run, the lines can be played in both espeak and festival*/
-    protected Object call() throws Exception {
-    	if(_voice.equals("espeak")) {
-    		try {
-            	
-            	String preview = "espeak \""+_lines+"\" "  ;
-                ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", preview);
+	protected Object call() throws Exception {
+		if(_voice.equals("espeak")) {
+			try {
 
-                Process process = builder.start();
+				String preview = "espeak \""+_lines+"\" "  ;
+				ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", preview);
 
-                InputStream out = process.getInputStream();
-                BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-            	
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-    	} else if (_voice.equals("festival")) {
-    		 try {
-    	        	String preview = "echo \""+_lines+"\" | festival --tts"  ;
-    	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", preview);
+				Process process = builder.start();
 
-    	            Process process = builder.start();
+				InputStream out = process.getInputStream();
+				BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
 
-    	            InputStream out = process.getInputStream();
-    	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-    	        	
-    	        } catch(Exception ex) {
-    	            ex.printStackTrace();
-    	        }
-    	}
-        
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		} else if (_voice.equals("festival")) {
+			try {
+				String preview = "echo \""+_lines+"\" | festival --tts"  ;
+				ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", preview);
 
-        return null;
+				Process process = builder.start();
+
+				InputStream out = process.getInputStream();
+				BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+
+		return null;
 	}
 }
 

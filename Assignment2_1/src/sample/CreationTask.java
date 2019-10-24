@@ -24,105 +24,105 @@ import javafx.concurrent.Task;
 /* Creates creation from combination of output.wav and images*/
 public class CreationTask extends Task{
 	private ArrayList<String> _rimages;
-	
+
 	private String _wikitSearch ;
 	private String _name;
 	private String _text;
 	private String _empty=" ";
-	
-	
-	
+
+
+
 	private Float _duration = 0.0f;
 	public CreationTask(String search, String name , ArrayList<String> rimages ,String text/*,ObservableList list*/) {
 		_wikitSearch=search;
 		_name=name;
 		_rimages=rimages;
 		_text=text;
-		
-		
-		
+
+
+
 	}
 	/*Method runs bash commands through a string parameter*/
 	public static void runCommand(String com) {
-		 try {
-	            
-	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+		try {
 
-	            Process process = builder.start();
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
-	            InputStream out = process.getInputStream();
-	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	            int exitStatus = process.waitFor();
-	            
-	            if(exitStatus ==0) {
-	            	
-	            }
-	            
-		 }catch(Exception ex) {
-	            ex.printStackTrace();
-	        }
+			Process process = builder.start();
+
+			InputStream out = process.getInputStream();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+			int exitStatus = process.waitFor();
+
+			if(exitStatus ==0) {
+
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	/*When run the output file combines the output.wav and images with the text for a creation*/
 	@Override
-    protected Object call() throws Exception {
-		
+	protected Object call() throws Exception {
+
 		String wavLength = "soxi -D Creations/output.wav"  ;
-        
-        
-        ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", wavLength);
 
-        Process process = builder.start();
-       
-        InputStream out = process.getInputStream();
-        BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-        String length = stdout.readLine();
-        int exitStatus = process.waitFor();
-       
-        if(exitStatus ==0) {
-        	 try {
- 	        	_duration = Float.parseFloat(length);
- 	        	
- 	        }catch(NumberFormatException e){
- 	        	
- 	 
- 	        }
-        }
-        
-        Float each = _duration/(_rimages.size());
-        
-        
-        runCommand("touch hi.txt");
-        
-        for (String i : _rimages) {
-        	
-        	runCommand("echo \"file '"+i+"'\nduration "+each+"\" >> hi.txt");
 
-        }
-        File temp = new File("Quiz/"+_text+".mp4");
-        runCommand("echo \"file '"+_rimages.get(_rimages.size()-1)+"'\" >> hi.txt");
-        
-       
-        runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_wikitSearch+"\"  -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Creations/"+_name+".mp4 ; ffmpeg -y -i ./Creations/"+_name+".mp4 -t "+_duration+" ./Creations/"+_name+".mp4 ");
-        if(!(temp.exists())){
-        	/*Creates second creation for quiz*/
-        	runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_empty+"\" -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Quiz/"+_text+".mp4 ; ffmpeg -y -i ./Quiz/"+_text+".mp4 -t "+_duration+" ./Quiz/"+_text+".mp4 ");
-        }
-        /* Clears all unnecessary files upon creation*/
-        runCommand("rm -f hi.txt");
-        runCommand("rm Creations/*.jpg");
-        runCommand("rm Creations/*.wav");
-        runCommand("rm Creations/*.mp3");
-        runCommand("rm Audio/*.wav");
-        runCommand("rm Audio/mylist.txt");
-        runCommand("rm -r Audio");
-       
-		
-		
-	        
-            
-		
-		
-		
+		ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", wavLength);
+
+		Process process = builder.start();
+
+		InputStream out = process.getInputStream();
+		BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+		String length = stdout.readLine();
+		int exitStatus = process.waitFor();
+
+		if(exitStatus ==0) {
+			try {
+				_duration = Float.parseFloat(length);
+
+			}catch(NumberFormatException e){
+
+
+			}
+		}
+
+		Float each = _duration/(_rimages.size());
+
+
+		runCommand("touch hi.txt");
+
+		for (String i : _rimages) {
+
+			runCommand("echo \"file '"+i+"'\nduration "+each+"\" >> hi.txt");
+
+		}
+		File temp = new File("Quiz/"+_text+".mp4");
+		runCommand("echo \"file '"+_rimages.get(_rimages.size()-1)+"'\" >> hi.txt");
+
+
+		runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_wikitSearch+"\"  -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Creations/"+_name+".mp4 ; ffmpeg -y -i ./Creations/"+_name+".mp4 -t "+_duration+" ./Creations/"+_name+".mp4 ");
+		if(!(temp.exists())){
+			/*Creates second creation for quiz*/
+			runCommand("ffmpeg -y -f concat -safe 0 -i hi.txt  -i ./Creations/output.wav  -filter:v \"drawtext=fontfile=myfont.ttf:fontsize=30: fontcolor=white:x=(w-text_w)/2:y=(h-text_h)/2:text='"+_empty+"\" -c:v libx264 -c:a aac  -pix_fmt yuv420p  ./Quiz/"+_text+".mp4 ; ffmpeg -y -i ./Quiz/"+_text+".mp4 -t "+_duration+" ./Quiz/"+_text+".mp4 ");
+		}
+		/* Clears all unnecessary files upon creation*/
+		runCommand("rm -f hi.txt");
+		runCommand("rm Creations/*.jpg");
+		runCommand("rm Creations/*.wav");
+		runCommand("rm Creations/*.mp3");
+		runCommand("rm Audio/*.wav");
+		runCommand("rm Audio/mylist.txt");
+		runCommand("rm -r Audio");
+
+
+
+
+
+
+
+
 		return null;
 	}
 }

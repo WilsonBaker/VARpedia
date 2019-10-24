@@ -18,41 +18,41 @@ public class CreateChunkTask extends Task{
 	}
 	/*When this task is carried out on a thread it creates chunk files with the selected lines*/
 	@Override
-    protected Object call() throws Exception {
-    	if(_voice.equals("espeak")) {
-    		try {
-            	
-            	String create = "espeak \""+_lines+"\" -w Audio/"+_name+".wav "  ;
-                ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
+	protected Object call() throws Exception {
+		if(_voice.equals("espeak")) {
+			try {
 
-                Process process = builder.start();
+				String create = "espeak \""+_lines+"\" -w Audio/"+_name+".wav "  ;
+				ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
 
-                InputStream out = process.getInputStream();
-                BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-            	
-            } catch(Exception ex) {
-                ex.printStackTrace();
-            }
-    	/* for other voice*/	
-    	} else if (_voice.equals("festival")) {
-    		 try {
-    	        	
-    	        	String create = "echo \""+_lines+"\" | text2wave -o Audio/"+_name+".wav "  ;
-    	        	
-    	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
+				Process process = builder.start();
 
-    	            Process process = builder.start();
+				InputStream out = process.getInputStream();
+				BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
 
-    	            InputStream out = process.getInputStream();
-    	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-    	        	
-    	        } catch(Exception ex) {
-    	            ex.printStackTrace();
-    	        }
-    	}
-        
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+			/* for other voice*/	
+		} else if (_voice.equals("festival")) {
+			try {
 
-        return null;
+				String create = "echo \""+_lines+"\" | text2wave -o Audio/"+_name+".wav "  ;
+
+				ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", create);
+
+				Process process = builder.start();
+
+				InputStream out = process.getInputStream();
+				BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
+		}
+
+
+		return null;
 	}
 
 }

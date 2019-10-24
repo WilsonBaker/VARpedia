@@ -37,10 +37,10 @@ public class ChooseImageController implements Initializable{
 	private ArrayList<String> _chosen = new ArrayList<String>();
 	private String _search;
 	private String _name;
-	
+
 	@FXML
 	private ImageView img1;
-	
+
 	@FXML
 	private ImageView img2;
 	@FXML
@@ -59,10 +59,10 @@ public class ChooseImageController implements Initializable{
 	private ImageView img9;
 	@FXML
 	private ImageView img10;
-	
+
 	@FXML
 	private CheckBox check1;
-	
+
 	@FXML
 	private CheckBox check2;
 	@FXML
@@ -79,24 +79,24 @@ public class ChooseImageController implements Initializable{
 	private CheckBox check8;
 	@FXML
 	private CheckBox check9;
-	
+
 	@FXML
 	private CheckBox check10;
-	
+
 	@FXML
 	private TextField text;
-	
+
 	@FXML
 	private Text status;
-	
+
 	@FXML
 	private Button createButton;
-	
-	
+
+
 	private Alert alert = new Alert(AlertType.ERROR);
 	/* After searching the images on flickr and storing the paths, we put the images on Image views in the scene*/
 	public void setImages(ArrayList<String> images, String search, String name) {
-		
+
 		_search=search;
 		_name=name;
 		_orig=images;
@@ -110,7 +110,7 @@ public class ChooseImageController implements Initializable{
 		img8.setImage(new Image("file:"+images.get(7)));
 		img9.setImage(new Image("file:"+images.get(8)));
 		img10.setImage(new Image("file:"+images.get(9)));
-	
+
 	}
 	/* This method creates a creation from the output audio file and the selected images*/
 	public void create(ActionEvent event) throws IOException {
@@ -154,89 +154,89 @@ public class ChooseImageController implements Initializable{
 			status.setText("Creating...");
 			CreationTask audiotask = new CreationTask(text.getText(),_name,_chosen,_search);
 			Thread thread = new Thread(audiotask);
-	 		thread.start();
-	 		
-	 		audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			thread.start();
+
+			audiotask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 				@Override
 				public void handle(WorkerStateEvent event3) {
-					
+
 					/* After creating, play creation*/
 					try {
-						
-	    				String playString = _name;
-	    				
-	    		        FXMLLoader loader = new FXMLLoader();
-	    		        loader.setLocation(getClass().getResource("something.fxml"));
-	    		        Parent createParent = loader.load();
-	    		        Scene createScene = new Scene(createParent, 500, 500);
-	    		        
-	    		        MediaPlayerController controller = loader.getController();
-	    		        controller.initData(playString);
-	    		
-	    		        //This gets the stage info
-	    		        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-	    		
-	    		        createWindow.setScene(createScene);
-	    		        createWindow.show();
+
+						String playString = _name;
+
+						FXMLLoader loader = new FXMLLoader();
+						loader.setLocation(getClass().getResource("something.fxml"));
+						Parent createParent = loader.load();
+						Scene createScene = new Scene(createParent, 500, 500);
+
+						MediaPlayerController controller = loader.getController();
+						controller.initData(playString);
+
+						//This gets the stage info
+						Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+						createWindow.setScene(createScene);
+						createWindow.show();
 					}catch(IOException e) {
-						
+
 					}
-					
-					
+
+
 				}
-	 		});
+			});
 		}
-		
-		
+
+
 	}
 	/* This method takes a bash command as string and runs the bash command*/
 	public static void runCommand(String com) {
-		 try {
-	            
-	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+		try {
 
-	            Process process = builder.start();
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
-	            InputStream out = process.getInputStream();
-	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	            int exitStatus = process.waitFor();
-	            
-	            if(exitStatus ==0) {
-	            	
-	            }
-	            
-		 }catch(Exception ex) {
-	            ex.printStackTrace();
-	        }
+			Process process = builder.start();
+
+			InputStream out = process.getInputStream();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+			int exitStatus = process.waitFor();
+
+			if(exitStatus ==0) {
+
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	/* This method returns to main menu and clears all unnecessary files*/
 	public void buttonMenu(ActionEvent event) throws IOException {
 		runCommand("rm -f hi.txt");
-        runCommand("rm Creations/*.jpg");
-        runCommand("rm Creations/*.wav");
-        runCommand("rm Creations/*.mp3");
-        runCommand("rm Audio/*.wav");
-        runCommand("rm Audio/mylist.txt");
-        runCommand("rm -r Audio");
-		
-        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        Scene createScene = new Scene(createParent, 500, 500);
+		runCommand("rm Creations/*.jpg");
+		runCommand("rm Creations/*.wav");
+		runCommand("rm Creations/*.mp3");
+		runCommand("rm Audio/*.wav");
+		runCommand("rm Audio/mylist.txt");
+		runCommand("rm -r Audio");
 
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Scene createScene = new Scene(createParent, 500, 500);
 
-        createWindow.setScene(createScene);
-        createWindow.show();
-        
-    }
-	
-	 @Override
-	    public void initialize(URL location, ResourceBundle resources) {
-		 /* cant move on with empty creation name*/
-		 createButton.disableProperty().bind(
-				    Bindings.isEmpty(text.textProperty())
-				    
-				    
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+		createWindow.setScene(createScene);
+		createWindow.show();
+
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		/* cant move on with empty creation name*/
+		createButton.disableProperty().bind(
+				Bindings.isEmpty(text.textProperty())
+
+
 				);
-	    }
+	}
 }

@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 public class SelectionController implements Initializable {
 	@FXML
 	private TextArea lines;
-	
+
 	@FXML
 	private TextField creation_name;
 	@FXML
@@ -38,7 +38,7 @@ public class SelectionController implements Initializable {
 	private Button createButton;
 	@FXML
 	private Button copyButton;
-	
+
 	@FXML
 	private ComboBox voice;
 	private String _wLines;
@@ -51,7 +51,7 @@ public class SelectionController implements Initializable {
 		_wLines=largeLines;
 		lines.setText(largeLines);
 		_wikitSearch=wikitSearch;
-		
+
 	}
 	/* This method previews the selected lines with the selected voice(runs the PreviewTask*/
 	public void preview(ActionEvent event) throws IOException {
@@ -61,30 +61,30 @@ public class SelectionController implements Initializable {
 			alert.setTitle("Too Many Words");
 			alert.setHeaderText("Too Many Words");
 			alert.show();
-			
+
 		}else {
 			PreviewTask preview = new PreviewTask(selected_lines.getText(),voice.getValue());
-    		Thread thread = new Thread(preview);
-    		thread.start();
-    		
-    		
-    					
-    					
+			Thread thread = new Thread(preview);
+			thread.start();
+
+
+
+
 		}
-		
+
 	}
 	/* This method checks if the creation name is correct and lines are fine(runs PreviewTask)  */
 	public void create(ActionEvent event) throws IOException {
-		
+
 		words= selected_lines.getText().split("\\s+");
 		File temp = new File("Audio/"+creation_name.getText()+".wav");
-		
+
 		if(words.length>30) {
 			alert.setContentText("Text has more than 30 words");
 			alert.setTitle("Too Many Words");
 			alert.setHeaderText("Too Many Words");
 			alert.show();
-			
+
 		}else if(creation_name.getText().equals("") || selected_lines.getText().equals("")) {
 			alert.setContentText("Either creation name or selected text is empty");
 			alert.setTitle("Empty Fields Required");
@@ -102,28 +102,28 @@ public class SelectionController implements Initializable {
 			alert.show();
 		}else {
 			CreateChunkTask createtask = new CreateChunkTask(selected_lines.getText(),creation_name.getText(),voice.getValue());
-    		Thread thread = new Thread(createtask);
-    		thread.start();
-    		
-    		createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-    			@Override
-    			public void handle(WorkerStateEvent event2) {
-    				alert2.setContentText("Chunk " + creation_name.getText() + " Created");
-    				alert2.setTitle("Chunk Created");
-    				alert2.setHeaderText("Chunk Created");
-    				alert2.show();
-    			}
-    		});
-    		/*You need to add the change in scene over here to the movie creator*/
+			Thread thread = new Thread(createtask);
+			thread.start();
+
+			createtask.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+				@Override
+				public void handle(WorkerStateEvent event2) {
+					alert2.setContentText("Chunk " + creation_name.getText() + " Created");
+					alert2.setTitle("Chunk Created");
+					alert2.setHeaderText("Chunk Created");
+					alert2.show();
+				}
+			});
+			/*You need to add the change in scene over here to the movie creator*/
 		}
-		
+
 	}
 	/*This method copys created lines to selected lines*/
 	public void copyButton(ActionEvent event) throws IOException {
 		selected_lines.setText(lines.getSelectedText());
 	}
-	
-	
+
+
 	/* This method changes the scene to the menu scene*/
 	public void buttonMenu(ActionEvent event) throws IOException {
 		File temp = new File("Audio");
@@ -131,17 +131,17 @@ public class SelectionController implements Initializable {
 			file.delete();
 		}
 		temp.delete();
-		
-        Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
-        Scene createScene = new Scene(createParent, 500, 500);
 
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Scene createScene = new Scene(createParent, 500, 500);
 
-        createWindow.setScene(createScene);
-        createWindow.show();
-        
-    }
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+		createWindow.setScene(createScene);
+		createWindow.show();
+
+	}
 	/*This method moves the scene to the ChooseAudio scene which is implemented by ChooseAudio FXML file*/
 	public void AudioScene (ActionEvent event) throws IOException {
 		File temp = new File("Audio");
@@ -152,48 +152,48 @@ public class SelectionController implements Initializable {
 			alert.show();
 		}else {
 			FXMLLoader loader = new FXMLLoader();
-	    	loader.setLocation(getClass().getResource("ChooseAudio.fxml"));
-	    	Parent createParent= loader.load();
-	    	ChooseAudioController controller = loader.getController();
-	    	controller.setWikitName( _wikitSearch);
-	        Scene createScene = new Scene(createParent, 500, 500);
-	        
-	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+			loader.setLocation(getClass().getResource("ChooseAudio.fxml"));
+			Parent createParent= loader.load();
+			ChooseAudioController controller = loader.getController();
+			controller.setWikitName( _wikitSearch);
+			Scene createScene = new Scene(createParent, 500, 500);
 
-	        createWindow.setScene(createScene);
-	        createWindow.show();
-			
+			Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+			createWindow.setScene(createScene);
+			createWindow.show();
+
 		}
-		
-		
+
+
 	}
-	
+
 	@Override
-	
-    public void initialize(URL location, ResourceBundle resources) {
+
+	public void initialize(URL location, ResourceBundle resources) {
 		lines.setWrapText(true);
 		selected_lines.setWrapText(true);
-		
+
 		voice.getItems().addAll("festival","espeak");
 		voice.getSelectionModel().selectFirst();
 		/*Set bind the empty property of certain text fields to the buttons*/
 		createButton.disableProperty().bind(
-			    Bindings.isEmpty(selected_lines.textProperty())
-			    .or(Bindings.isEmpty(creation_name.textProperty()))
-			    
-			);
+				Bindings.isEmpty(selected_lines.textProperty())
+				.or(Bindings.isEmpty(creation_name.textProperty()))
+
+				);
 		previewButton.disableProperty().bind(
-			    Bindings.isEmpty(selected_lines.textProperty())
-			    
-			    
-			);
+				Bindings.isEmpty(selected_lines.textProperty())
+
+
+				);
 		copyButton.disableProperty().bind(
-			    Bindings.isEmpty(lines.textProperty())
-			    
-			    
-			);
-    }
-	
+				Bindings.isEmpty(lines.textProperty())
+
+
+				);
+	}
+
 
 
 }

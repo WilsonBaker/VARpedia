@@ -20,170 +20,170 @@ import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
 
-    @FXML private ListView listView;
-    private Alert alert = new Alert(AlertType.ERROR);
-    private ArrayList<String> _quiz = new ArrayList<String>();
-    /* Method that runs commands using string bash commands*/
-    public static void runCommand(String com) {
-		 try {
-	            
-	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+	@FXML private ListView listView;
+	private Alert alert = new Alert(AlertType.ERROR);
+	private ArrayList<String> _quiz = new ArrayList<String>();
+	/* Method that runs commands using string bash commands*/
+	public static void runCommand(String com) {
+		try {
 
-	            Process process = builder.start();
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
-	            InputStream out = process.getInputStream();
-	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	            int exitStatus = process.waitFor();
-	            
-	            if(exitStatus ==0) {
-	            	
-	            }
-	            
-		 }catch(Exception ex) {
-	            ex.printStackTrace();
-	        }
-    }
-    /* Method that starts the creation process and moves to the next scene of searching wikipedia*/
-    public void buttonCreate(ActionEvent event) throws IOException {
-    	File temp = new File("Audio");
-    	if(temp.exists()) {
-    		
-    	}else {
-    		runCommand("mkdir Audio");
-    	}
-        Parent createParent = FXMLLoader.load(getClass().getResource("search.fxml"));
-        Scene createScene = new Scene(createParent, 500, 500);
+			Process process = builder.start();
 
-        //This gets the stage info
-        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+			InputStream out = process.getInputStream();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+			int exitStatus = process.waitFor();
 
-        createWindow.setScene(createScene);
-        createWindow.show();
+			if(exitStatus ==0) {
 
-    }
-    
-    /* Method that deletes selected creations*/
-    public void buttonDelete(ActionEvent event) throws IOException{
-    	int i = listView.getSelectionModel().getSelectedIndex();
-    	if (listView.getSelectionModel().getSelectedItem() != null) {
-    		String playString = listView.getSelectionModel().getSelectedItem().toString();
-        	String URL = "./Creations/" + playString + ".mp4";
-    		 if (i != -1) {
-    			 listView.getItems().remove(i);
-    			 try {
-    		            String cmd = "rm -f " + URL;
-    		            
-    		            
-    		            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
+			}
 
-    		            Process process = pb.start();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	/* Method that starts the creation process and moves to the next scene of searching wikipedia*/
+	public void buttonCreate(ActionEvent event) throws IOException {
+		File temp = new File("Audio");
+		if(temp.exists()) {
+
+		}else {
+			runCommand("mkdir Audio");
+		}
+		Parent createParent = FXMLLoader.load(getClass().getResource("search.fxml"));
+		Scene createScene = new Scene(createParent, 500, 500);
+
+		//This gets the stage info
+		Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+		createWindow.setScene(createScene);
+		createWindow.show();
+
+	}
+
+	/* Method that deletes selected creations*/
+	public void buttonDelete(ActionEvent event) throws IOException{
+		int i = listView.getSelectionModel().getSelectedIndex();
+		if (listView.getSelectionModel().getSelectedItem() != null) {
+			String playString = listView.getSelectionModel().getSelectedItem().toString();
+			String URL = "./Creations/" + playString + ".mp4";
+			if (i != -1) {
+				listView.getItems().remove(i);
+				try {
+					String cmd = "rm -f " + URL;
 
 
-    		            ArrayList<String> viewList = new ArrayList<String>();
+					ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
-    		            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-    			 
-    			 }catch (IOException e) {
-    	            
-    			 }
-    		 }
-    	}
-    	
-    }
-    /* Method that moves on to the next scene of something*/
-    public void buttonPlay(ActionEvent event) throws IOException{
-    	if (listView.getSelectionModel().getSelectedItem() != null) {
-	    	String playString = listView.getSelectionModel().getSelectedItem().toString();
-	
-	        FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(getClass().getResource("something.fxml"));
-	        Parent createParent = loader.load();
-	        Scene createScene = new Scene(createParent, 500, 500);
-	        
-	        MediaPlayerController controller = loader.getController();
-	        controller.initData(playString);
-	
-	        //This gets the stage info
-	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-	
-	        createWindow.setScene(createScene);
-	        createWindow.show();
-    	}
-
-    }
-    /* This method grabs creations and puts them in a list for the list view*/
-    public String[]  getCreations() {
-
-        try {
-            String cmd = "ls -1 ./Creations | egrep '\\.mp4$' | sed -e 's/\\..*$//'";
-
-            ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
-
-            Process process = pb.start();
+					Process process = pb.start();
 
 
-            ArrayList<String> viewList = new ArrayList<String>();
+					ArrayList<String> viewList = new ArrayList<String>();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
-            String line;
 
-            while ((line = reader.readLine()) != null) {
-                viewList.add(line);
-            }
+				}catch (IOException e) {
 
-            int exitVal = process.waitFor();
-            if (exitVal == 0) {
-                
-                String[] strings = viewList.toArray(new String[viewList.size()]);
-                return strings;
-            } else {
-                //abnormal..
-            }
+				}
+			}
+		}
 
-        } catch (IOException | InterruptedException e) {
-            return null;
-        }
-        return null;
-   }
-    /* Button that changes to new scene(quiz scene) using past created creations*/
-    public void buttonQuiz(ActionEvent event) throws IOException{
-    	File temp = new File("Quiz");
-    	if (temp.listFiles().length==0) {
-    		alert.setContentText("No Pre-Created Creations");
+	}
+	/* Method that moves on to the next scene of something*/
+	public void buttonPlay(ActionEvent event) throws IOException{
+		if (listView.getSelectionModel().getSelectedItem() != null) {
+			String playString = listView.getSelectionModel().getSelectedItem().toString();
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("something.fxml"));
+			Parent createParent = loader.load();
+			Scene createScene = new Scene(createParent, 500, 500);
+
+			MediaPlayerController controller = loader.getController();
+			controller.initData(playString);
+
+			//This gets the stage info
+			Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+			createWindow.setScene(createScene);
+			createWindow.show();
+		}
+
+	}
+	/* This method grabs creations and puts them in a list for the list view*/
+	public String[]  getCreations() {
+
+		try {
+			String cmd = "ls -1 ./Creations | egrep '\\.mp4$' | sed -e 's/\\..*$//'";
+
+			ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
+
+			Process process = pb.start();
+
+
+			ArrayList<String> viewList = new ArrayList<String>();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+			String line;
+
+			while ((line = reader.readLine()) != null) {
+				viewList.add(line);
+			}
+
+			int exitVal = process.waitFor();
+			if (exitVal == 0) {
+
+				String[] strings = viewList.toArray(new String[viewList.size()]);
+				return strings;
+			} else {
+				//abnormal..
+			}
+
+		} catch (IOException | InterruptedException e) {
+			return null;
+		}
+		return null;
+	}
+	/* Button that changes to new scene(quiz scene) using past created creations*/
+	public void buttonQuiz(ActionEvent event) throws IOException{
+		File temp = new File("Quiz");
+		if (temp.listFiles().length==0) {
+			alert.setContentText("No Pre-Created Creations");
 			alert.setTitle("No Pre-Created Creations");
 			alert.setHeaderText("No Pre-Created Creations");
 			alert.show();
-    	}else {
-    		for(File file: temp.listFiles()) {
-    			_quiz.add(file.getName().replace(".mp4", ""));
-    			
-    		}
-    		
-    		FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(getClass().getResource("quiz.fxml"));
-	        Parent createParent = loader.load();
-	        Scene createScene = new Scene(createParent, 500, 500);
-	        
-	        QuizController controller = loader.getController();
-	        controller.initData(_quiz);
-	
-	        //This gets the stage info
-	        Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
-	
-	        createWindow.setScene(createScene);
-	        createWindow.show();
-    	}
-		
-    }
+		}else {
+			for(File file: temp.listFiles()) {
+				_quiz.add(file.getName().replace(".mp4", ""));
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        String[] strings = getCreations();
-        listView.getItems().addAll(strings);
-    }
+			}
+
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("quiz.fxml"));
+			Parent createParent = loader.load();
+			Scene createScene = new Scene(createParent, 500, 500);
+
+			QuizController controller = loader.getController();
+			controller.initData(_quiz);
+
+			//This gets the stage info
+			Stage createWindow = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+			createWindow.setScene(createScene);
+			createWindow.show();
+		}
+
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		String[] strings = getCreations();
+		listView.getItems().addAll(strings);
+	}
 
 
-    
+
 }

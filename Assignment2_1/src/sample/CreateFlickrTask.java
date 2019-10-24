@@ -29,7 +29,7 @@ public class CreateFlickrTask extends Task{
 	private String _name;
 	private int _number;
 	/*private ObservableList audioList;*/
-	
+
 	private Float _duration = 0.0f;
 	public CreateFlickrTask(String search, String name , String number, ArrayList<String> rimages/*,ObservableList list*/) {
 		_wikitSearch=search;
@@ -38,42 +38,42 @@ public class CreateFlickrTask extends Task{
 		/*audioList = list;*/
 		try {
 			_number=Integer.parseInt(number);
-			
+
 		}catch(NumberFormatException e){
-			
+
 		}
-		
+
 	}
 	public static void runCommand(String com) {
-		 try {
-	            
-	            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
+		try {
 
-	            Process process = builder.start();
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", com);
 
-	            InputStream out = process.getInputStream();
-	            BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
-	            int exitStatus = process.waitFor();
-	            
-	            if(exitStatus ==0) {
-	            	
-	            }
-	            
-		 }catch(Exception ex) {
-	            ex.printStackTrace();
-	        }
+			Process process = builder.start();
+
+			InputStream out = process.getInputStream();
+			BufferedReader stdout = new BufferedReader(new InputStreamReader(out));
+			int exitStatus = process.waitFor();
+
+			if(exitStatus ==0) {
+
+			}
+
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 	/* This method grabs tha API key from the txt file*/
 	public static String getAPIKey(String key) throws Exception {
-		
+
 
 		String config = System.getProperty("user.dir") 
 				+ System.getProperty("file.separator")+ "flickr-api-keys.txt"; 
-		
+
 
 		File file = new File(config); 
 		BufferedReader br = new BufferedReader(new FileReader(file)); 
-		
+
 		String line;
 		while ( (line = br.readLine()) != null ) {
 			if (line.trim().startsWith(key)) {
@@ -86,63 +86,63 @@ public class CreateFlickrTask extends Task{
 	}
 	@Override
 	/*When the task is run the 10 photos are stored in an array*/
-    protected Object call() throws Exception {
+	protected Object call() throws Exception {
 		String cmd;
 		String path = System.getProperty("user.dir");
-		
-		
-		
-		
+
+
+
+
 		try {
 			String apiKey = getAPIKey("apiKey");
 			String sharedSecret = getAPIKey("sharedSecret");
-			
+
 			Flickr flickr = new Flickr(apiKey, sharedSecret, new REST());
-			
+
 			String query = _wikitSearch;
 			int resultsPerPage = 10/*_number*/;
 			int page = 0;
-			
-			
-	        PhotosInterface photos = flickr.getPhotosInterface();
-	        SearchParameters params = new SearchParameters();
-	        params.setSort(SearchParameters.RELEVANCE);
-	        params.setMedia("photos"); 
-	        params.setText(query);
-	        
-	        PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
-	        
-	        /* Make all images the same size*/
-	        for (Photo photo: results) {
-	        	
-	        	try {
-	        		BufferedImage image = photos.getImage(photo,Size.LARGE);
-		        	String filename = query.trim().replace(' ', '-')+"-"+System.currentTimeMillis()+"-"+photo.getId()+".jpg";
-		        	File outputfile = new File(path+ "/Creations",filename);
-		        	_images.add(path+ "/Creations/"+filename);
-		        	ImageIO.write(image, "jpg", outputfile);
-		        	
-	        	} catch (FlickrException fe) {
-	        		System.err.println("Ignoring image " +photo.getId() +": "+ fe.getMessage());
+
+
+			PhotosInterface photos = flickr.getPhotosInterface();
+			SearchParameters params = new SearchParameters();
+			params.setSort(SearchParameters.RELEVANCE);
+			params.setMedia("photos"); 
+			params.setText(query);
+
+			PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
+
+			/* Make all images the same size*/
+			for (Photo photo: results) {
+
+				try {
+					BufferedImage image = photos.getImage(photo,Size.LARGE);
+					String filename = query.trim().replace(' ', '-')+"-"+System.currentTimeMillis()+"-"+photo.getId()+".jpg";
+					File outputfile = new File(path+ "/Creations",filename);
+					_images.add(path+ "/Creations/"+filename);
+					ImageIO.write(image, "jpg", outputfile);
+
+				} catch (FlickrException fe) {
+					System.err.println("Ignoring image " +photo.getId() +": "+ fe.getMessage());
 				}
-	        	
-	        }
-	        
-	        for (String i : _images) {
-	        	String rimage = i.replace(".","new." );
-	        	_rimages.add(rimage);
-	        	runCommand("ffmpeg -y -i "+ i + " -vf scale=400:400 "+ rimage);
-	        	
-	        	
-	        }
-	        
-            
+
+			}
+
+			for (String i : _images) {
+				String rimage = i.replace(".","new." );
+				_rimages.add(rimage);
+				runCommand("ffmpeg -y -i "+ i + " -vf scale=400:400 "+ rimage);
+
+
+			}
+
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
-		
-		
+
+
 		return null;
 	}
 }
