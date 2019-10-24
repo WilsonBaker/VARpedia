@@ -71,20 +71,34 @@
             </VBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="17.0" layoutY="345.0" prefHeight="103.0" prefWidth="155.0" spacing="10.0">
+      <VBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="314.0" prefHeight="103.0" prefWidth="250.0">
          <children>
-            <Label prefHeight="25.0" prefWidth="48.0" text="Music">
-               <font>
-                  <Font name="AnjaliOldLipi Regular" size="18.0" />
-               </font>
-            </Label>
-            <ChoiceBox fx:id="music" prefWidth="150.0" />
-            <Button mnemonicParsing="false" onAction="#preview" text="Preview" />
+            <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="250.0">
+               <children>
+                  <Label alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="38.0" prefWidth="72.0" text="Music">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/music.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="250.0" spacing="10.0">
+               <children>
+                  <ChoiceBox fx:id="music" prefWidth="150.0" />
+                  <Button maxHeight="-Infinity" mnemonicParsing="false" onAction="#preview" prefHeight="15.0" prefWidth="103.0" text="Preview">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <Text layoutX="182.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Creation Name:" />
-      <TextField fx:id="creationName" layoutX="182.0" layoutY="433.0" />
-      <Button fx:id="createButton" layoutX="386.0" layoutY="433.0" mnemonicParsing="false" onAction="#flickr" text="Create" />
       <Text fx:id="text" layoutX="357.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="120.0">
          <font>
             <Font size="20.0" />
@@ -98,6 +112,26 @@
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER_LEFT" layoutX="301.0" layoutY="331.0" prefHeight="88.0" prefWidth="180.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Creation Name:" wrappingWidth="157.0751953125">
+               <font>
+                  <Font name="AnjaliOldLipi Regular" size="18.0" />
+               </font>
+            </Text>
+            <TextField fx:id="creationName" />
+         </children>
+      </VBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="278.0" layoutY="446.0" prefHeight="50.0" prefWidth="225.0" spacing="10.0">
+         <children>
+            <Button fx:id="createButton" mnemonicParsing="false" onAction="#flickr" prefHeight="40.0" prefWidth="137.0" text="Make Creation" />
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/forward.png" />
+               </image>
+            </ImageView>
          </children>
       </HBox>
    </children>

@@ -4,15 +4,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChooseImageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@../Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ChooseImageController">
    <children>
       <ImageView fx:id="img1" fitHeight="100.0" fitWidth="100.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img2" fitHeight="100.0" fitWidth="100.0" layoutX="100.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
@@ -64,8 +66,6 @@
             </CheckBox>
          </children>
       </GridPane>
-      <Button fx:id="createButton" layoutX="381.0" layoutY="452.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="172.0" layoutY="452.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return To Main Menu" />
       <CheckBox fx:id="check1" contentDisplay="CENTER" layoutY="208.0" mnemonicParsing="false">
          <padding>
             <Insets left="40.0" />
@@ -92,7 +92,7 @@
          </padding>
       </CheckBox>
       <TextField fx:id="text" layoutX="173.0" layoutY="413.0" />
-      <Text layoutX="22.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text For Creation:">
+      <Text layoutX="22.0" layoutY="431.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Text For Creation:">
          <font>
             <Font size="15.0" />
          </font></Text>
@@ -100,10 +100,30 @@
          <font>
             <Font size="17.0" />
          </font></Text>
-      <Text layoutX="173.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Images:" wrappingWidth="171.0">
+      <Text layoutX="85.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Select Images:" wrappingWidth="348.0">
          <font>
-            <Font size="22.0" />
+            <Font name="AnjaliOldLipi Regular" size="48.0" />
          </font>
       </Text>
+      <HBox alignment="BOTTOM_LEFT" layoutX="2.0" layoutY="446.0" prefHeight="50.0" prefWidth="250.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/back.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="275.0" layoutY="446.0" prefHeight="50.0" prefWidth="225.0" spacing="10.0">
+         <children>
+            <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" prefHeight="40.0" prefWidth="137.0" text="Make Creation" />
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/forward.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
