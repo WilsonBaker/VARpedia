@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,18 +11,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
 
 	@FXML private ListView listView;
+	@FXML private ImageView p;
 	private Alert alert = new Alert(AlertType.ERROR);
+	private Alert quitAlert = new Alert(AlertType.CONFIRMATION);
+	private Alert deleteAlert = new Alert(AlertType.CONFIRMATION);
 	private ArrayList<String> _quiz = new ArrayList<String>();
 	/* Method that runs commands using string bash commands*/
 	public static void runCommand(String com) {
@@ -64,31 +72,41 @@ public class MenuController implements Initializable {
 
 	/* Method that deletes selected creations*/
 	public void buttonDelete(ActionEvent event) throws IOException{
-		int i = listView.getSelectionModel().getSelectedIndex();
-		if (listView.getSelectionModel().getSelectedItem() != null) {
-			String playString = listView.getSelectionModel().getSelectedItem().toString();
-			String URL = "./Creations/" + playString + ".mp4";
-			if (i != -1) {
-				listView.getItems().remove(i);
-				try {
-					String cmd = "rm -f " + URL;
+		deleteAlert.setContentText("Confirm if you would like to delete " + listView.getSelectionModel().getSelectedItem().toString());
+		deleteAlert.setTitle("Delete File");
+		deleteAlert.setHeaderText("Are you sure?");
+
+		Optional<ButtonType> result = deleteAlert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			int i = listView.getSelectionModel().getSelectedIndex();
+			if (listView.getSelectionModel().getSelectedItem() != null) {
+				String playString = listView.getSelectionModel().getSelectedItem().toString();
+				String URL = "./Creations/" + playString + ".mp4";
+				if (i != -1) {
+					listView.getItems().remove(i);
+					try {
+						String cmd = "rm -f " + URL;
 
 
-					ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
+						ProcessBuilder pb = new ProcessBuilder("bash", "-c", cmd);
 
-					Process process = pb.start();
-
-
-					ArrayList<String> viewList = new ArrayList<String>();
-
-					BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+						Process process = pb.start();
 
 
-				}catch (IOException e) {
+						ArrayList<String> viewList = new ArrayList<String>();
 
+						BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+
+					}catch (IOException e) {
+
+					}
 				}
 			}
+		} else {
+			//chose to cancel therefore stay on menu
 		}
+
 
 	}
 	/* Method that moves on to the next scene of something*/
@@ -176,6 +194,20 @@ public class MenuController implements Initializable {
 			createWindow.show();
 		}
 
+	}
+
+	public void buttonQuit(ActionEvent event) throws IOException {
+		//Show user an alert confirming if they want to quit
+		quitAlert.setContentText("Confirm if you would like to quit?");
+		quitAlert.setTitle("Quit Application");
+		quitAlert.setHeaderText("Are you sure?");
+
+		Optional<ButtonType> result = quitAlert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			Platform.exit();
+		} else {
+			//chose to cancel therefore stay on menu
+		}
 	}
 
 	@Override

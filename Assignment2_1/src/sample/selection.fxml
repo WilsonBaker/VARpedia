@@ -4,40 +4,104 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SelectionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SelectionController">
    <children>
-      <Text fontSmoothingType="LCD" layoutX="137.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Lines For Creation" textAlignment="CENTER" underline="true" wrappingWidth="225.43017578125">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Text>
-      <Text fontSmoothingType="LCD" layoutX="137.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Copy lines into box below to make creation (max 30 words)" textAlignment="CENTER" wrappingWidth="225.43017578125">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </Text>
-      <ComboBox fx:id="voice" layoutX="204.0" layoutY="362.0" prefWidth="150.0" />
-      <Text fontSmoothingType="LCD" layoutX="70.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Voice:" textAlignment="CENTER" wrappingWidth="134.43017578125">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Button fx:id="previewButton" layoutX="365.0" layoutY="362.0" mnemonicParsing="false" onAction="#preview" text="Preview" />
-      <Button fx:id="createButton" layoutX="369.0" layoutY="415.0" mnemonicParsing="false" onAction="#create" text="Create" />
-      <Button layoutX="90.0" layoutY="453.0" mnemonicParsing="false" onAction="#buttonMenu" text="Return to Main Menu" />
-      <TextArea fx:id="lines" layoutX="67.0" layoutY="77.0" prefHeight="104.0" prefWidth="365.0" />
-      <TextArea fx:id="selected_lines" layoutX="67.0" layoutY="239.0" prefHeight="104.0" prefWidth="365.0" />
-      <TextField fx:id="creation_name" layoutX="204.0" layoutY="415.0" prefHeight="26.0" prefWidth="150.0" />
-      <Text layoutX="90.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chunk Name:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
-      <Button layoutX="322.0" layoutY="453.0" mnemonicParsing="false" onAction="#AudioScene" text="Make Creation" />
-      <Button fx:id="copyButton" layoutX="70.0" layoutY="192.0" mnemonicParsing="false" onAction="#copyButton" text="Copy" />
+      <VBox alignment="CENTER" layoutX="11.0" layoutY="345.0" prefHeight="107.0" prefWidth="480.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Select Voice:" wrappingWidth="120.0">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="voice" prefWidth="150.0" />
+                  <Button fx:id="previewButton" mnemonicParsing="false" onAction="#preview" prefWidth="75.0" text="Preview">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Chunk Name:" wrappingWidth="120.0">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="creation_name" prefHeight="26.0" prefWidth="150.0" />
+                  <Button fx:id="createButton" mnemonicParsing="false" onAction="#create" prefWidth="75.0" text="Create">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="16.0" layoutY="14.0" prefHeight="331.0" prefWidth="455.0" spacing="5.0">
+         <children>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Select Lines For Creation" textAlignment="CENTER" underline="true" wrappingWidth="468.43017578125">
+               <font>
+                  <Font name="AnjaliOldLipi Regular" size="36.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="lines" prefHeight="150.0" prefWidth="365.0" />
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Button fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="40.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#copyButton" prefHeight="40.0" prefWidth="70.0" text="Copy" textAlignment="CENTER">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="15.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/copy.png" />
+                     </image>
+                  </ImageView>
+                  <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Copy lines into box below to make creation (max 30 words)" textAlignment="CENTER" wrappingWidth="225.43017578125">
+                     <font>
+                        <Font name="AnjaliOldLipi Regular" size="14.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Icons/down.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <TextArea fx:id="selected_lines" prefHeight="130.0" prefWidth="469.0" />
+         </children>
+      </VBox>
+      <HBox alignment="BOTTOM_LEFT" layoutX="11.0" layoutY="441.0" prefHeight="50.0" prefWidth="250.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/back.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="261.0" layoutY="441.0" prefHeight="50.0" prefWidth="225.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#AudioScene" prefHeight="40.0" prefWidth="137.0" text="Make Creation" />
+            <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Icons/forward.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
