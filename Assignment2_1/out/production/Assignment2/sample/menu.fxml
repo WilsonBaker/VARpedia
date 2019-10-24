@@ -15,13 +15,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@../Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
    <children>
-      <Label layoutX="20.0" layoutY="109.0" prefHeight="50.0" prefWidth="171.0" text="List of Creations:" underline="true">
+      <Label layoutX="20.0" layoutY="109.0" prefHeight="50.0" prefWidth="171.0" stylesheets="@../Style/palette.css" text="List of Creations:" underline="true">
          <font>
             <Font name="AnjaliOldLipi Regular" size="18.0" />
          </font></Label>
       <HBox layoutX="20.0" layoutY="153.0" prefHeight="300.0" prefWidth="300.0">
          <children>
-            <ListView fx:id="listView" maxHeight="300.0" prefHeight="300.0" prefWidth="250.0" />
+            <ListView fx:id="listView" maxHeight="300.0" prefHeight="300.0" prefWidth="250.0" stylesheets="@../Style/palette.css" />
          </children>
       </HBox>
       <Text layoutX="113.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="VARpedia" textAlignment="CENTER" wrappingWidth="273.7294921875">
@@ -48,7 +48,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                <children>
-                  <Button mnemonicParsing="false" onAction="#buttonQuiz" prefHeight="100.0" prefWidth="120.0" text="Quiz">
+                  <Button mnemonicParsing="false" onAction="#buttonQuiz" prefHeight="100.0" prefWidth="120.0" stylesheets="@../Style/palette.css" text="Quiz">
                      <font>
                         <Font name="AnjaliOldLipi Regular" size="24.0" />
                      </font>
@@ -62,7 +62,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <Button mnemonicParsing="false" onAction="#buttonCreate" prefHeight="100.0" prefWidth="120.0" text="Create">
+                  <Button mnemonicParsing="false" onAction="#buttonCreate" prefHeight="100.0" prefWidth="120.0" stylesheets="@../Style/palette.css" text="Create">
                      <font>
                         <Font name="AnjaliOldLipi Regular" size="24.0" />
                      </font>
@@ -76,7 +76,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#buttonPlay" prefHeight="100.0" prefWidth="120.0" text="Play">
+                  <Button mnemonicParsing="false" onAction="#buttonPlay" prefHeight="100.0" prefWidth="120.0" stylesheets="@../Style/palette.css" text="Play">
                      <font>
                         <Font name="AnjaliOldLipi Regular" size="24.0" />
                      </font>
@@ -90,7 +90,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false" onAction="#buttonDelete" prefHeight="100.0" prefWidth="120.0" text="Delete">
+                  <Button mnemonicParsing="false" onAction="#buttonDelete" prefHeight="100.0" prefWidth="120.0" stylesheets="@../Style/palette.css" text="Delete">
                      <font>
                         <Font name="AnjaliOldLipi Regular" size="24.0" />
                      </font>
@@ -104,7 +104,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
                <children>
-                  <Button mnemonicParsing="false" onAction="#buttonQuit" prefHeight="100.0" prefWidth="120.0" text="Quit">
+                  <Button mnemonicParsing="false" onAction="#buttonQuit" prefHeight="100.0" prefWidth="120.0" stylesheets="@../Style/palette.css" text="Quit">
                      <font>
                         <Font name="AnjaliOldLipi Regular" size="24.0" />
                      </font>
