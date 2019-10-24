@@ -20,7 +20,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception{
 		window = primaryStage;
 
-		Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
 		window.setTitle("VARpedia");
 		window.setScene(new Scene(root, 500, 500));
 		window.show();

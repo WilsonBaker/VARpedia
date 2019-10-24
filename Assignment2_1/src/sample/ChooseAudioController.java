@@ -161,7 +161,7 @@ public class ChooseAudioController implements Initializable {
 
 
 								FXMLLoader loader = new FXMLLoader();
-								loader.setLocation(getClass().getResource("images.fxml"));
+								loader.setLocation(getClass().getResource("/FXML/images.fxml"));
 								Parent createParent = loader.load();
 								Scene createScene = new Scene(createParent, 500, 500);
 
@@ -206,7 +206,7 @@ public class ChooseAudioController implements Initializable {
 		}
 		temp.delete();
 
-		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Parent createParent = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
 		Scene createScene = new Scene(createParent, 500, 500);
 
 		//This gets the stage info

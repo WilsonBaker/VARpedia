@@ -166,7 +166,7 @@ public class ChooseImageController implements Initializable{
 						String playString = _name;
 
 						FXMLLoader loader = new FXMLLoader();
-						loader.setLocation(getClass().getResource("something.fxml"));
+						loader.setLocation(getClass().getResource("/FXML/something.fxml"));
 						Parent createParent = loader.load();
 						Scene createScene = new Scene(createParent, 500, 500);
 
@@ -219,7 +219,7 @@ public class ChooseImageController implements Initializable{
 		runCommand("rm Audio/mylist.txt");
 		runCommand("rm -r Audio");
 
-		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Parent createParent = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
 		Scene createScene = new Scene(createParent, 500, 500);
 
 		//This gets the stage info

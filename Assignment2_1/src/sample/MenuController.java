@@ -59,7 +59,7 @@ public class MenuController implements Initializable {
 		}else {
 			runCommand("mkdir Audio");
 		}
-		Parent createParent = FXMLLoader.load(getClass().getResource("search.fxml"));
+		Parent createParent = FXMLLoader.load(getClass().getResource("/FXML/search.fxml"));
 		Scene createScene = new Scene(createParent, 500, 500);
 
 		//This gets the stage info
@@ -115,7 +115,7 @@ public class MenuController implements Initializable {
 			String playString = listView.getSelectionModel().getSelectedItem().toString();
 
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("something.fxml"));
+			loader.setLocation(getClass().getResource("/FXML/something.fxml"));
 			Parent createParent = loader.load();
 			Scene createScene = new Scene(createParent, 500, 500);
 
@@ -180,7 +180,7 @@ public class MenuController implements Initializable {
 			}
 
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("quiz.fxml"));
+			loader.setLocation(getClass().getResource("/FXML/quiz.fxml"));
 			Parent createParent = loader.load();
 			Scene createScene = new Scene(createParent, 500, 500);
 

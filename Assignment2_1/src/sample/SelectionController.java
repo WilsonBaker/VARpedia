@@ -132,7 +132,7 @@ public class SelectionController implements Initializable {
 		}
 		temp.delete();
 
-		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Parent createParent = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
 		Scene createScene = new Scene(createParent, 500, 500);
 
 		//This gets the stage info
@@ -152,7 +152,7 @@ public class SelectionController implements Initializable {
 			alert.show();
 		}else {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("ChooseAudio.fxml"));
+			loader.setLocation(getClass().getResource("/FXML/ChooseAudio.fxml"));
 			Parent createParent= loader.load();
 			ChooseAudioController controller = loader.getController();
 			controller.setWikitName( _wikitSearch);

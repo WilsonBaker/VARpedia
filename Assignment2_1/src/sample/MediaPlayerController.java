@@ -53,7 +53,7 @@ public class MediaPlayerController implements Initializable{
 
 	public void buttonMenu(ActionEvent event) throws IOException {
 		_player.dispose();
-		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Parent createParent = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
 		Scene createScene = new Scene(createParent, 500, 500);
 
 		//This gets the stage info

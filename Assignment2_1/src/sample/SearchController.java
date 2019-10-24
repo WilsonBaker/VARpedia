@@ -47,7 +47,7 @@ public class SearchController implements Initializable {
 		runCommand("rm Creations/*.mp3");
 		runCommand("rm Creations/*.wav");
 		runCommand("rm -r Audio");
-		Parent createParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+		Parent createParent = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
 		Scene createScene = new Scene(createParent, 500, 500);
 
 		//This gets the stage info
@@ -136,7 +136,7 @@ public class SearchController implements Initializable {
 	/* This method moves the scene to the selection scene*/
 	public void toSelect(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("selection.fxml"));
+		loader.setLocation(getClass().getResource("/FXML/selection.fxml"));
 		Parent createParent= loader.load();
 		Scene createScene = new Scene(createParent, 500, 500);
 
