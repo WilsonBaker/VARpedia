@@ -99,11 +99,6 @@
             </HBox>
          </children>
       </VBox>
-      <Text fx:id="text" layoutX="357.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="120.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
       <HBox alignment="BOTTOM_LEFT" layoutY="446.0" prefHeight="50.0" prefWidth="250.0" spacing="10.0">
          <children>
             <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
@@ -134,5 +129,10 @@
             </ImageView>
          </children>
       </HBox>
+      <Text fx:id="text" layoutX="325.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="131.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
