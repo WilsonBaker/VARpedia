@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@../Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SelectionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="./Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SelectionController">
    <children>
       <VBox alignment="CENTER" layoutX="11.0" layoutY="345.0" prefHeight="107.0" prefWidth="480.0">
          <children>
@@ -65,7 +65,7 @@
                   </Button>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/copy.png" />
+                        <Image url="./Style/Icons/copy.png" />
                      </image>
                   </ImageView>
                   <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Copy lines into box below to make creation (max 30 words)" textAlignment="CENTER" wrappingWidth="225.43017578125">
@@ -75,7 +75,7 @@
                   </Text>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/down.png" />
+                        <Image url="./Style/Icons/down.png" />
                      </image>
                   </ImageView>
                </children>
@@ -87,7 +87,7 @@
          <children>
             <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/back.png" />
+                  <Image url="./Style/Icons/back.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />
@@ -98,7 +98,7 @@
             <Button mnemonicParsing="false" onAction="#AudioScene" prefHeight="40.0" prefWidth="137.0" text="Make Creation" />
             <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/forward.png" />
+                  <Image url="./Style/Icons/forward.png" />
                </image>
             </ImageView>
          </children>

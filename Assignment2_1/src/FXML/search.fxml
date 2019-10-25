@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@../Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="./Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SearchController">
    <children>
       <Text layoutX="38.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Create a Creation" textAlignment="CENTER" wrappingWidth="425.0">
          <font>
@@ -41,7 +41,7 @@
             </HBox>
             <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/search.png" />
+                  <Image url="./Style/Icons/search.png" />
                </image></ImageView>
          </children>
       </VBox>
@@ -49,7 +49,7 @@
          <children>
             <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Icons/back.png" />
+                  <Image url="./Style/Icons/back.png" />
                </image>
             </ImageView>
             <Button mnemonicParsing="false" onAction="#buttonMenu" prefHeight="40.0" prefWidth="137.0" text="Go Back to Menu" />

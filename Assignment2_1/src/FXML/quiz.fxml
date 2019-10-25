@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="@../Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.QuizController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" stylesheets="./Style/palette.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.QuizController">
    <children>
       <MediaView fx:id="_view" fitHeight="200.0" fitWidth="200.0" layoutX="139.0" layoutY="50.0" />
       <Button layoutX="188.0" layoutY="281.0" mnemonicParsing="false" onAction="#buttonPlayPause" prefHeight="26.0" prefWidth="103.0" text="Play/Pause" />
